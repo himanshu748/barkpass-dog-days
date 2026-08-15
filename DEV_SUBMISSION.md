@@ -1,102 +1,89 @@
 ---
-title: BarkPass: An AI wellness passport that lets dogs speak
+title: "BarkPass: One photo becomes your dog's AI wellness story"
 published: true
 tags: devchallenge, weekendchallenge, ai, webdev
 ---
 
 *This is a submission for [Weekend Challenge: Dog Days Edition](https://dev.to/challenges/weekend-2026-08-13).*
 
-**Published post:** https://dev.to/himanshu_748/barkpass-an-ai-wellness-passport-that-lets-dogs-speak-53d0
+Most dog owners already take a photo every day. What they do not have is a simple way to turn those moments into a useful pattern.
+
+**BarkPass turns one dog photo into a structured wellness check-in, a voice update, a grounded history and a portable pet passport.** It stays focused on visible signals and never pretends to diagnose a condition or replace a veterinarian.
 
 ## What I Built
 
-BarkPass is a daily wellness passport for any dog. An owner creates a profile, uploads a photo or short video, and receives a structured, non-diagnostic behavior read. The result becomes a short first-person voice note from the dog, a history entry for trend questions, and a pet passport that can be anchored on Solana devnet.
+BarkPass is a daily wellness companion for **any dog**:
 
-The idea came from a simple problem: dog owners notice small changes every day, but those observations are usually scattered across photos, notes, and memory. BarkPass turns the easiest habit, taking a photo, into a repeatable check-in that is useful without pretending to replace a veterinarian.
+1. Create a dog-specific profile.
+2. Add a photo or short video from today.
+3. Receive a structured read of visible mood, energy, posture and flags.
+4. Hear the result as a short first-person voice note.
+5. Save the check-in and ask plain-language questions about change over time.
+6. Create a portable pet passport anchored on Solana devnet.
 
-Bruno appears on the editorial landing page as an example. The actual app onboards each visitor's dog and creates an isolated random dog ID for its profile, check-ins, trend queries, and passport metadata.
+Bruno is the editorial example on the landing page, not a hardcoded user. Every visitor receives a separate random dog ID that scopes the profile, check-ins, history queries and passport metadata.
 
 ![BarkPass landing page](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/01-landing-page.png)
 
-### What works today
-
-- Per-dog onboarding with a local profile photo and dog-scoped history
-- Client-side photo resizing and video-frame extraction
-- Gemini vision analysis with a strict JSON response schema
-- ElevenLabs speech returned as an MP3 and played inline
-- Snowflake profile, check-in, and grounded query routes
-- A transparent local history fallback when the warehouse is unavailable
-- Dynamic Solana passport metadata for the current dog
-- Metaplex devnet NFT minting and a Phantom-signed 0.01 SOL shelter-tip flow
-- Responsive layouts, keyboard focus, reduced-motion support, loading states, and clear errors
-
-## Demo
-
-**Public demo:** https://barkpass-dog-days.vercel.app/app
+## Try BarkPass
 
 **One-click judge demo:** https://barkpass-dog-days.vercel.app/app?demo=1
 
+**Clean onboarding for your dog:** https://barkpass-dog-days.vercel.app/app
+
+**Source:** https://github.com/himanshu748/barkpass-dog-days
+
 ![BarkPass personalized dashboard](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/02-personalized-dashboard.png)
 
-The public deployment is intentionally secret-free and uses BarkPass's labeled local fallbacks. Live provider verification evidence is recorded separately so sponsor credentials are not exposed through an unrestricted demo endpoint.
+The judge demo opens with seven realistic check-ins and a ready-to-run history question. It shows the complete experience immediately, while `/app` starts with an empty profile so a judge can confirm BarkPass is not only about Bruno.
 
-The public live link fulfills the supplied brief's demo-video-or-embedded-live-link requirement.
+The unrestricted public deployment is deliberately secret-free. It demonstrates the full interface through clearly labelled local fallbacks, while real sponsor calls were verified on a protected Vercel Preview and documented below. No billable credential is exposed to the browser.
 
-Suggested flow for judges:
+## Why these four technologies belong together
 
-1. Open `/app?demo=1` to load Bruno's seven-day story immediately.
-2. Ask the prefilled history question and inspect the seven underlying energy values.
-3. Upload a fresh dog photo to exercise the Gemini read, then play the ElevenLabs voice note.
-4. Open the passport section and view the verified Solana devnet mint.
-5. Create a clean profile from `/app` to confirm that BarkPass works for any dog, not only Bruno.
+- **Gemini** turns an everyday image into a consistent, structured observation.
+- **ElevenLabs** makes the check-in memorable by giving the dog a short voice update.
+- **Snowflake** turns isolated observations into a dog-specific history that can answer questions without inventing data.
+- **Solana** makes the pet passport portable and independently verifiable on devnet.
 
-## Code
-
-**Repository:** https://github.com/himanshu748/barkpass-dog-days
-
-The app is a Vite and React frontend with Vercel Functions for provider calls. API secrets remain server-side. Dog profile photos stay in the owner's browser, while only a prepared check-in image is sent to Gemini after the owner selects it.
-
-Run it locally:
-
-```bash
-npm install
-npm test
-npm run dev
-```
+The result is one coherent daily ritual, not four disconnected API demos.
 
 ## How I Built It
 
-### Google AI
+### Google AI: structured signals, not vague vibes
 
-The browser downsizes an image or extracts one frame from a short video before calling `/api/analyze`. Gemini receives a veterinary-behavior-observer instruction that forbids diagnosis and asks for only visible signals. The route uses a JSON schema for mood, energy from 1 to 10, posture notes, visible flags, and confidence. The result is normalized before it reaches the interface.
+The browser downsizes a selected image or extracts one frame from a short video before calling `/api/analyze`. Gemini receives a non-diagnostic behavior-observer instruction plus a strict JSON schema for mood, energy from 1 to 10, posture notes, visible flags and confidence. The server normalizes the response before the interface renders it.
 
-I tested five licensed real photographs against the live Preview. Gemini returned four distinct moods (playful, anxious, relaxed, and alert), energy values from 4 to 9, and an average response time of 6.94 seconds. The slowest image took 10.53 seconds.
+I ran five licensed dog photographs through the live provider path. Gemini produced four distinct moods—playful, anxious, relaxed and alert—with energy values from 4 to 9. Average response time was 6.94 seconds; the slowest was 10.53 seconds.
 
-### ElevenLabs
+### ElevenLabs: a result owners will remember
 
-BarkPass turns the structured Gemini read into a short first-person line, then sends that text to ElevenLabs. The server returns an MP3, and the browser plays it without a refresh. Browser speech is an explicitly labeled fallback if the provider is unavailable.
+BarkPass converts the structured observation into one short first-person line and sends it to ElevenLabs. The endpoint returns an MP3 that plays inline without a page refresh. Browser speech is available as an explicitly labelled fallback.
 
-The measured ElevenLabs call returned an 84,889-byte MP3 in 1.55 seconds. Even when combined with the slowest photo analysis, the measured provider path was 12.08 seconds, below the 15-second demo target.
+The measured live call returned an 84,889-byte MP3 in 1.55 seconds. Combined with the slowest image analysis, the measured provider path was 12.08 seconds—inside the challenge's 15-second demo target.
 
-### Snowflake
+### Snowflake: answers grounded in the rows that exist
 
-Profiles are merged into `BARKPASS_DOGS`, and check-ins are merged into `BARKPASS_CHECKINS` using both check-in ID and dog ID. History questions query only the current dog's recent rows. The answer is calculated from returned energy values and mood counts so it cannot invent a trend that is absent from the data.
+Profiles are merged into `BARKPASS_DOGS`; check-ins are merged into `BARKPASS_CHECKINS` using both check-in ID and dog ID. History questions query only the current dog's rows. The answer is calculated from returned energy values and mood counts, so it cannot invent a trend that is absent from the data.
 
-The new 120-day Snowflake student trial is active. BarkPass uses an X-Small auto-suspending warehouse and a dedicated `BARKPASS_APP_USER` service identity with key-pair authentication and a least-privilege role. The live BarkPass Preview stored Luna plus three check-ins with energies 6, 8, and 7. Its grounded response was: “Across 3 Snowflake check-ins, Luna averaged 7.0 out of 10. Energy ranged from 6 to 8 and finished higher compared with the first saved day.” A direct worksheet query independently returned `dog_luna_123`, 3 rows, average 7.0, minimum 6, and maximum 8.
+BarkPass uses an X-Small auto-suspending warehouse and a dedicated service identity with key-pair authentication and a least-privilege role. In live verification, BarkPass stored Luna plus three check-ins with energies 6, 8 and 7. The grounded response reported an average of 7.0, a range of 6 to 8 and a higher final value. A direct worksheet aggregate independently returned the same row count, average, minimum and maximum.
 
 ![Snowflake aggregate proof](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/04-snowflake-proof.png)
 
-### Solana
+### Solana: a passport judges can verify themselves
 
-The passport endpoint creates dog-specific Metaplex metadata containing breed, age, microchip ID, and vaccination date. Minting uses a server-side devnet authority, while shelter tips are prepared server-side and must be approved by the owner's Phantom wallet. Explorer links are returned for verifiable proof.
+The passport endpoint creates dog-specific Metaplex metadata containing breed, age, microchip ID and vaccination date. Minting uses a server-side devnet authority. Shelter tips are prepared server-side and require explicit approval in the owner's Phantom wallet before broadcast.
 
-Luna's BarkPass was minted successfully on devnet as [`AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3`](https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet). The [mint transaction](https://explorer.solana.com/tx/3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m?cluster=devnet) finalized without error, and RPC verification shows an initialized NFT mint with supply one. The Phantom-signed shelter-tip transaction remains to be added.
+Luna's BarkPass was minted successfully on devnet as [`AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3`](https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet). The [mint transaction](https://explorer.solana.com/tx/3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m?cluster=devnet) finalized without error, and RPC verification shows an initialized NFT mint with supply one.
 
-### Reliability and privacy
+## Reliability, privacy and proof
 
-The interface preserves local profiles and check-ins when a sponsor service is unavailable. It never presents fallback data as live provider output. BarkPass is a wellness companion, not veterinary advice, and its prompts and copy avoid medical diagnoses.
-
-The app includes nine API contract tests covering structured Gemini output, ElevenLabs audio, dog validation, Snowflake input validation, key-pair authentication and status, dog-scoped summaries, dynamic passport metadata, and pre-mint validation.
+- Profile photos remain in the owner's browser. Only a prepared check-in frame is sent after the owner selects it.
+- Local profiles and history remain usable when a sponsor service is unavailable.
+- Provider fallbacks are labelled; demo data is never presented as a live response.
+- BarkPass is a wellness companion, not veterinary advice.
+- Nine API contract tests cover Gemini normalization, playable ElevenLabs audio, dog validation, Snowflake key-pair auth and dog scoping, dynamic passport metadata and pre-mint validation.
+- The production build and all nine tests pass.
 
 ## Prize Categories
 
@@ -105,9 +92,8 @@ The app includes nine API contract tests covering structured Gemini output, Elev
 - Best Use of Snowflake
 - Best Use of Solana
 
-## Known Limitations
+## What comes next
 
-- Visual observations are non-diagnostic and depend on the quality and framing of the uploaded image.
-- Profile photos and fallback history are browser-local because accounts were intentionally out of scope for the weekend build.
-- Solana actions use devnet and have no real monetary value.
-- The public demo needs request controls before sponsor-backed endpoints are exposed without Vercel protection.
+The weekend build proves the daily loop. The next version would add authenticated multi-device profiles, owner-controlled sharing with carers or veterinarians, push reminders and stronger public request controls for the live provider path.
+
+BarkPass starts with something dog owners already do—take a photo—and turns it into a story they can hear, question and carry with their dog.
