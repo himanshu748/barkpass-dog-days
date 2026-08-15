@@ -4,9 +4,9 @@ BarkPass is a responsive AI wellness passport for any dog. The root route is an 
 
 Public BarkPass app: https://barkpass-dog-days.vercel.app/app
 
-Published DEV Challenge submission: https://dev.to/himanshu_748/barkpass-an-ai-wellness-passport-that-lets-dogs-speak-53d0
+Detailed DEV Challenge submission draft: [`DEV_SUBMISSION.md`](./DEV_SUBMISSION.md). It remains intentionally unpublished until the final public-post confirmation.
 
-Optional sample story: open https://barkpass-dog-days.vercel.app/app?sample=1 to load Bruno's seven-day history immediately. From there, a visitor can ask a grounded trend question, inspect the four-track status panel, connect the labeled demo wallet, and open verified Solana devnet proof. Creating a new BarkPass still starts with a clean dog-specific profile and history. The earlier `?demo=1` link remains compatible.
+Optional sample story: open https://barkpass-dog-days.vercel.app/app?sample=1 to load Bruno's seven-day history immediately. From there, a visitor can ask a grounded trend question, inspect the all-live four-track status panel, connect Phantom, and open verified Solana devnet proof. Creating a new BarkPass still starts with a clean dog-specific profile and history. The earlier `?demo=1` link remains compatible.
 
 ## Run locally
 
@@ -32,7 +32,7 @@ Protected Vercel deployments keep sponsor credentials server-side. Their sensiti
 
 Live Preview verification on August 15, 2026 confirmed Gemini structured image analysis, an ElevenLabs MP3 response, unsigned Solana devnet tip preparation, and a real Snowflake write/query path. All four sponsor integrations now live on the protected `barkpass-dog-days` Preview; the obsolete Ember project was removed after migration. A Luna profile and three dog-scoped check-ins were persisted in `BARKPASS.PUBLIC`; the returned answer reported an average energy of 7.0 and a range of 6 to 8. The browser still keeps profiles and history usable through the explicitly labeled local fallback when a sponsor service is unavailable.
 
-The public Production deployment now runs Gemini, ElevenLabs and Snowflake through same-origin server functions while keeping their credentials unreadable to the browser. A real-photo Gemini request, a playable ElevenLabs MP3, a Snowflake dog-profile write and a three-row grounded query were re-verified after the Production migration. Solana stays explicitly labelled as demo until the replacement devnet vault is funded; the previously finalized mint remains linked as independently verifiable proof.
+The public Production deployment now runs all four sponsor routes through same-origin server functions while keeping their credentials unreadable to the browser. A real-photo Gemini request, a playable ElevenLabs MP3, a Snowflake dog-profile write and three-row grounded query, an unsigned Solana shelter tip and a new finalized devnet passport mint were re-verified after the Production migration.
 
 The app exposes these endpoints:
 

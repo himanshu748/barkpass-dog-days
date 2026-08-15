@@ -9,7 +9,8 @@ After promoting the sponsor routes to the public deployment, BarkPass returned:
 - Gemini: HTTP 200 for a licensed real dog photo; `Playful`, energy `10/10`, structured posture notes and `provider: gemini`
 - ElevenLabs: HTTP 200, a 52,288-byte MPEG voice note and `x-barkpass-provider: ElevenLabs`
 - Snowflake: a live Maple profile write, three dog-scoped check-in writes and a grounded query with average energy `6.7` and range `5` to `8`
-- Public status: Gemini, ElevenLabs and Snowflake live; Solana visibly labelled demo while the replacement devnet vault awaits faucet verification
+- Solana: a live unsigned 0.01 SOL shelter-tip transaction and a new Production mint finalized without error
+- Public status: Gemini, ElevenLabs, Snowflake and Solana all live
 
 ## Five-photo Gemini acceptance set
 
@@ -33,15 +34,15 @@ The migrated ElevenLabs credential was rechecked through BarkPass and returned H
 
 ## Solana
 
-The live server prepared an unsigned 0.01 SOL devnet shelter-tip transaction. The approved Luna BarkPass mint was then broadcast and finalized successfully on Solana devnet.
+The public Production server prepared an unsigned 0.01 SOL devnet shelter-tip transaction. Maple's BarkPass mint was then broadcast and finalized successfully on Solana devnet.
 
-- Mint: `AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3`
-- [Mint on Solana Explorer](https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet)
-- [Finalized mint transaction](https://explorer.solana.com/tx/3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m?cluster=devnet)
-- RPC verification: finalized with no error; mint initialized with supply `1` and `0` decimals
+- Mint: `B3FRp9ndjjiVbFwb7MKruabsHicPQQCnL6JdksErEWwa`
+- [Mint on Solana Explorer](https://explorer.solana.com/address/B3FRp9ndjjiVbFwb7MKruabsHicPQQCnL6JdksErEWwa?cluster=devnet)
+- [Finalized mint transaction](https://explorer.solana.com/tx/5nAjwN21Phz6Deia5uYzGCaRkD5v7xm7cjK5pA3JJWAQciPB357hmeQb5UKpzmzwFSRWbpMKrbpZrdJTnXMfHjWu?cluster=devnet)
+- RPC verification: `finalized`, no error; Explorer shows `Maple's BarkPass`, symbol `BARK`, token standard `Non-Fungible` and the dog-specific metadata URI
 - Public metadata: verified from `https://barkpass-dog-days.vercel.app/api/passport-metadata`
-- Migrated vault: `9RjmJveGakYhFM8EA13Gx5aT4sMtdqxXWtbXXFfgqX7E`, funded with `0.5` devnet SOL
-- New-vault proof: BarkPass returned a live unsigned 0.01 SOL transaction with the migrated vault as shelter; no additional NFT was broadcast during the migration
+- Production vault: `9KtpoV5naY8orDkjgfRQo1mttw5kK6vr3WFSNPAX3saZ`, funded with `0.5` devnet SOL before the mint
+- New-vault proof: BarkPass returned the new vault as the live tip shelter and the Explorer transaction lists it as mint authority and fee payer
 
 The shelter tip is still unsigned because its final broadcast requires the owner's Phantom approval.
 
@@ -53,12 +54,12 @@ The new 120-day student trial is active. Setup and proof used:
 - Warehouse: `BARKPASS_WH` (X-Small, 60-second auto-suspend)
 - Database/schema: `BARKPASS.PUBLIC`
 - Runtime identity: `BARKPASS_APP_USER`, a service user with key-pair authentication and a least-privilege `BARKPASS_APP_ROLE`
-- Live dog profile write: `dog_luna_123` / Luna
-- Live check-ins: three rows dated August 13 to 15, 2026 with energy values 6, 8, and 7
-- Grounded API answer: “Across 3 Snowflake check-ins, Luna averaged 7.0 out of 10. Energy ranged from 6 to 8 and finished higher compared with the first saved day.”
-- Independent worksheet aggregate: `dog_luna_123` | `3` check-ins | `7.0` average | `6` minimum | `8` maximum
+- Live Production dog profile write: `dog_prod_maple_0815` / Maple
+- Live Production check-ins: three rows dated August 13 to 15, 2026 with energy values 5, 7, and 8
+- Grounded API answer: “Across 3 Snowflake check-ins, Maple averaged 6.7 out of 10. Energy ranged from 5 to 8 and finished higher compared with the first saved day.”
+- Fresh independent worksheet aggregate: `dog_prod_maple_0815` | `3` check-ins | `6.7` average | `5` minimum | `8` maximum
 
-![Snowflake worksheet aggregate proof](./04-snowflake-proof.png)
+![Snowflake worksheet aggregate proof](./03-snowflake-result.jpg)
 
 ## Build checks
 
