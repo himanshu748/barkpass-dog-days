@@ -39,7 +39,7 @@ The clean app route begins with onboarding. Add a real dog profile, choose a pho
 
 The Bruno route is only an optional sample story. A history product needs several days before its most interesting screen makes sense, so the sample provides seven check-ins immediately. It is not a separate build or a hidden judging route.
 
-![BarkPass personalized daily check-in for Milo with all four provider routes live, plus visible mood, energy, posture and voice results](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/02-app-checkin.png)
+![BarkPass personalized daily check-in for Milo with all four provider routes live, plus visible mood, energy, posture and voice results](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/e48550f/submission-assets/02-app-checkin.png)
 
 ## The product flow
 
@@ -55,7 +55,7 @@ The product stays useful even when one provider is unavailable. Local profile an
 
 The four integrations are stages of one pipeline, not four logos attached to a landing page.
 
-![BarkPass architecture: notice with Gemini, hear with ElevenLabs, remember with Snowflake and carry with Solana](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/05-architecture.png)
+![BarkPass architecture: notice with Gemini, hear with ElevenLabs, remember with Snowflake and carry with Solana](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/e48550f/submission-assets/05-architecture.png)
 
 The diagram is a static 1,280 × 720 image so it renders consistently on DEV without depending on Mermaid support.
 
@@ -188,7 +188,7 @@ The deployment uses an X-Small auto-suspending warehouse and a dedicated service
 
 In live Production verification, BarkPass stored Maple and three check-ins with energy values 5, 7 and 8. The API reported an average of 6.7, a range of 5 to 8 and a higher final value. A fresh Snowflake worksheet aggregate independently returned the same row count, average, minimum and maximum.
 
-![Fresh Snowflake worksheet aggregate for Maple's three Production check-ins](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/03-snowflake-result.jpg)
+![Fresh Snowflake worksheet aggregate for Maple's three Production check-ins](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/e48550f/submission-assets/03-snowflake-result.jpg)
 
 Snowflake is not an analytics screenshot added after the product. It is why BarkPass can answer **"Has her energy changed?"** with the supporting numbers beside the sentence.
 
@@ -200,7 +200,7 @@ The mint endpoint validates the dog first, then generates a public metadata URL 
 
 Maple's BarkPass was minted from the public Production route as [`B3FRp9ndjjiVbFwb7MKruabsHicPQQCnL6JdksErEWwa`](https://explorer.solana.com/address/B3FRp9ndjjiVbFwb7MKruabsHicPQQCnL6JdksErEWwa?cluster=devnet). The [mint transaction](https://explorer.solana.com/tx/5nAjwN21Phz6Deia5uYzGCaRkD5v7xm7cjK5pA3JJWAQciPB357hmeQb5UKpzmzwFSRWbpMKrbpZrdJTnXMfHjWu?cluster=devnet) finalized without error. Explorer shows the `BARK` non-fungible token, Maple's public metadata URL and BarkPass's new funded devnet vault as authority.
 
-![Finalized BarkPass mint transaction on Solana devnet](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/04-solana-finalized.png)
+![Finalized BarkPass mint transaction on Solana devnet](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/e48550f/submission-assets/04-solana-finalized.png)
 
 The shelter-tip endpoint does something deliberately different. It prepares a 0.01 SOL devnet transfer with the connected wallet as fee payer, but the server does not sign for the owner. Phantom receives the serialized transaction and must explicitly approve it before broadcast.
 
