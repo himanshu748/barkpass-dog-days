@@ -1,6 +1,6 @@
 ---
 title: "Your dog's camera roll is a wellness history. BarkPass makes it speak."
-published: false
+published: true
 tags: devchallenge, weekendchallenge, ai, webdev
 ---
 

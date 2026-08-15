@@ -4,7 +4,7 @@ BarkPass is a responsive AI wellness passport for any dog. The root route is an 
 
 Public BarkPass app: https://barkpass-dog-days.vercel.app/app
 
-Detailed DEV Challenge submission draft: [`DEV_SUBMISSION.md`](./DEV_SUBMISSION.md). It remains intentionally unpublished until the final public-post confirmation.
+Published DEV Challenge submission: https://dev.to/himanshu_748/your-dogs-camera-roll-is-a-wellness-history-barkpass-makes-it-speak-1m5j
 
 Optional sample story: open https://barkpass-dog-days.vercel.app/app?sample=1 to load Bruno's seven-day history immediately. From there, a visitor can ask a grounded trend question, inspect the all-live four-track status panel, connect Phantom, and open verified Solana devnet proof. Creating a new BarkPass still starts with a clean dog-specific profile and history. The earlier `?demo=1` link remains compatible.
 
