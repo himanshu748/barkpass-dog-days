@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">BarkPass pet passport</title>
+  <desc id="desc">A navy and cream BarkPass identity seal with a red paw mark.</desc>
+  <rect width="1200" height="1200" rx="110" fill="#15313a"/>
+  <rect x="70" y="70" width="1060" height="1060" rx="75" fill="none" stroke="#f3dfbd" stroke-width="8"/>
+  <circle cx="600" cy="500" r="250" fill="#f4e4c9"/>
+  <g fill="#c94f34">
+    <ellipse cx="600" cy="560" rx="150" ry="125"/>
+    <ellipse cx="455" cy="405" rx="62" ry="82" transform="rotate(-25 455 405)"/>
+    <ellipse cx="565" cy="365" rx="62" ry="82" transform="rotate(-7 565 365)"/>
+    <ellipse cx="675" cy="365" rx="62" ry="82" transform="rotate(7 675 365)"/>
+    <ellipse cx="785" cy="405" rx="62" ry="82" transform="rotate(25 785 405)"/>
+  </g>
+  <text x="600" y="870" text-anchor="middle" fill="#fff8ec" font-family="Georgia, serif" font-size="118">BarkPass</text>
+  <text x="600" y="948" text-anchor="middle" fill="#d8e1e3" font-family="Arial, sans-serif" font-size="40" letter-spacing="10">PET PASSPORT</text>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/app", "destination": "/index.html" },
+    { "source": "/app/:path*", "destination": "/index.html" }
+  ],
+  "functions": {
+    "api/analyze.js": { "maxDuration": 60 },
+    "api/voice.js": { "maxDuration": 60 },
+    "api/dogs.js": { "maxDuration": 60 },
+    "api/checkins.js": { "maxDuration": 60 },
+    "api/query.js": { "maxDuration": 60 },
+    "api/solana/mint.js": { "maxDuration": 60 },
+    "api/solana/tip.js": { "maxDuration": 30 }
+  }
+}
