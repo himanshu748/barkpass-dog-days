@@ -14,8 +14,6 @@ Yesterday's posture, last week's energy, that unusually restless look. Each clue
 
 One daily photo becomes a structured visual observation, a short voice update spoken as the dog, a grounded history the owner can question, and an optional on-chain pet passport. BarkPass describes what is visible. It never diagnoses a condition or replaces a veterinarian.
 
-![BarkPass landing page showing the one-photo wellness promise](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/01-landing-current.png)
-
 ## What I Built
 
 BarkPass is a responsive wellness companion for any dog. Its product loop is **notice, hear, remember, carry**.
