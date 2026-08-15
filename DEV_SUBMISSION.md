@@ -55,9 +55,9 @@ The product stays useful even when one provider is unavailable. Local profile an
 
 The four integrations are stages of one pipeline, not four logos attached to a landing page.
 
-![BarkPass architecture: notice with Gemini, hear with ElevenLabs, remember with Snowflake and carry with Solana](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/e48550f/submission-assets/05-architecture.png)
+![BarkPass vertical architecture map: a private owner-initiated photo flows through server-side Gemini, ElevenLabs, Snowflake and Solana jobs](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/70242bf/submission-assets/05-architecture-v2.jpg)
 
-The diagram is a static 1,280 × 720 image so it renders consistently on DEV without depending on Mermaid support.
+The diagram is a static 1,000 × 1,200 portrait image with large type, so it stays readable at DEV's article width without depending on Mermaid support.
 
 ### The five layers
 
