@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">BarkPass architecture</title>
+  <desc id="desc">A dog owner adds a daily photo in the browser. Vercel Functions send it through Gemini, ElevenLabs, Snowflake and Solana to create an observation, voice note, wellness history and portable passport.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#C95D42"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#2D2924" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" fill="#F8F5EE"/>
+  <circle cx="1130" cy="95" r="180" fill="#EEDFD1" opacity="0.55"/>
+  <circle cx="90" cy="655" r="150" fill="#DDE5DF" opacity="0.62"/>
+
+  <text x="64" y="72" fill="#28231F" font-family="Georgia, serif" font-size="40" font-weight="700">One dog. Four provider jobs. One verifiable story.</text>
+  <text x="66" y="108" fill="#71685F" font-family="Arial, sans-serif" font-size="18">BarkPass turns one familiar action into a wellness loop owners can hear, question and carry.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="64" y="174" width="250" height="330" rx="28" fill="#FFFDF8" stroke="#D8D1C7"/>
+  </g>
+  <rect x="88" y="198" width="56" height="56" rx="18" fill="#C95D42"/>
+  <path d="M104 230c8-16 20-16 28 0M104 230c-8-10-14-2-7 7 4 5 9 7 13 8M132 230c8-10 14-2 7 7-4 5-9 7-13 8" fill="none" stroke="#FFF8F0" stroke-width="4" stroke-linecap="round"/>
+  <text x="88" y="292" fill="#28231F" font-family="Georgia, serif" font-size="30" font-weight="700">Owner’s browser</text>
+  <text x="88" y="329" fill="#71685F" font-family="Arial, sans-serif" font-size="17">Dog profile</text>
+  <text x="88" y="357" fill="#71685F" font-family="Arial, sans-serif" font-size="17">Daily photo or video frame</text>
+  <text x="88" y="385" fill="#71685F" font-family="Arial, sans-serif" font-size="17">Playback and local resilience</text>
+  <rect x="88" y="424" width="184" height="48" rx="14" fill="#F0E5D9"/>
+  <text x="180" y="454" text-anchor="middle" fill="#99432F" font-family="Arial, sans-serif" font-size="15" font-weight="700">PRIVATE IMAGE HISTORY</text>
+
+  <path d="M326 338 H378" stroke="#C95D42" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="352" y="320" text-anchor="middle" fill="#99432F" font-family="Arial, sans-serif" font-size="13" font-weight="700">HTTPS</text>
+
+  <rect x="392" y="148" width="824" height="404" rx="32" fill="#2B2926"/>
+  <text x="430" y="193" fill="#FFF9F1" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="1.5">VERCEL FUNCTIONS · CREDENTIALS STAY SERVER-SIDE</text>
+
+  <g filter="url(#shadow)">
+    <rect x="430" y="230" width="168" height="234" rx="22" fill="#FFFDF8"/>
+    <rect x="622" y="230" width="168" height="234" rx="22" fill="#FFFDF8"/>
+    <rect x="814" y="230" width="168" height="234" rx="22" fill="#FFFDF8"/>
+    <rect x="1006" y="230" width="168" height="234" rx="22" fill="#FFFDF8"/>
+  </g>
+
+  <circle cx="466" cy="270" r="19" fill="#DDE5DF"/>
+  <text x="466" y="276" text-anchor="middle" fill="#3E6250" font-family="Arial, sans-serif" font-size="18" font-weight="700">1</text>
+  <text x="450" y="317" fill="#28231F" font-family="Georgia, serif" font-size="27" font-weight="700">Gemini</text>
+  <text x="450" y="350" fill="#C95D42" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.2">NOTICE</text>
+  <text x="450" y="383" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Mood</text>
+  <text x="450" y="407" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Energy</text>
+  <text x="450" y="431" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Visible signals</text>
+
+  <circle cx="658" cy="270" r="19" fill="#F0E5D9"/>
+  <text x="658" y="276" text-anchor="middle" fill="#99432F" font-family="Arial, sans-serif" font-size="18" font-weight="700">2</text>
+  <text x="642" y="317" fill="#28231F" font-family="Georgia, serif" font-size="25" font-weight="700">ElevenLabs</text>
+  <text x="642" y="350" fill="#C95D42" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.2">HEAR</text>
+  <text x="642" y="383" fill="#71685F" font-family="Arial, sans-serif" font-size="15">First-person</text>
+  <text x="642" y="407" fill="#71685F" font-family="Arial, sans-serif" font-size="15">MP3 voice note</text>
+  <text x="642" y="431" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Inline playback</text>
+
+  <circle cx="850" cy="270" r="19" fill="#E2E7ED"/>
+  <text x="850" y="276" text-anchor="middle" fill="#465D75" font-family="Arial, sans-serif" font-size="18" font-weight="700">3</text>
+  <text x="834" y="317" fill="#28231F" font-family="Georgia, serif" font-size="26" font-weight="700">Snowflake</text>
+  <text x="834" y="350" fill="#C95D42" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.2">REMEMBER</text>
+  <text x="834" y="383" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Dog-scoped rows</text>
+  <text x="834" y="407" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Energy trends</text>
+  <text x="834" y="431" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Grounded answers</text>
+
+  <circle cx="1042" cy="270" r="19" fill="#E6E0ED"/>
+  <text x="1042" y="276" text-anchor="middle" fill="#65577C" font-family="Arial, sans-serif" font-size="18" font-weight="700">4</text>
+  <text x="1026" y="317" fill="#28231F" font-family="Georgia, serif" font-size="27" font-weight="700">Solana</text>
+  <text x="1026" y="350" fill="#C95D42" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.2">CARRY</text>
+  <text x="1026" y="383" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Devnet passport</text>
+  <text x="1026" y="407" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Explorer proof</text>
+  <text x="1026" y="431" fill="#71685F" font-family="Arial, sans-serif" font-size="15">Wallet approval</text>
+
+  <path d="M600 347 H616" stroke="#C95D42" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M792 347 H808" stroke="#C95D42" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M984 347 H1000" stroke="#C95D42" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="430" y="493" width="744" height="34" rx="12" fill="#383531"/>
+  <text x="802" y="516" text-anchor="middle" fill="#E8DED3" font-family="Arial, sans-serif" font-size="14">Normalized dog ID links observation → voice → history → portable identity</text>
+
+  <path d="M802 552 V592 H188 V520" fill="none" stroke="#C95D42" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="802" y="582" text-anchor="middle" fill="#99432F" font-family="Arial, sans-serif" font-size="14" font-weight="700">RESULTS RETURN TO ONE COHERENT OWNER EXPERIENCE</text>
+
+  <rect x="64" y="622" width="1152" height="52" rx="18" fill="#FFFDF8" stroke="#D8D1C7"/>
+  <text x="640" y="655" text-anchor="middle" fill="#28231F" font-family="Arial, sans-serif" font-size="17" font-weight="700">Wellness companion · visible observations only · not veterinary advice · devnet passport</text>
+</svg>

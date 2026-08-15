@@ -117,7 +117,7 @@ export default function App() {
   }
 
   if (!dog || editingProfile) {
-    return <ProfileSetup existing={dog || null} onSave={handleProfileSaved} onCancel={dog ? () => setEditingProfile(false) : undefined} onSample={!dog ? handleSampleProfile : undefined} />
+    return <ProfileSetup existing={dog || null} sampleProfileId={sampleDog.id} onSave={handleProfileSaved} onCancel={dog ? () => setEditingProfile(false) : undefined} onSample={!dog ? handleSampleProfile : undefined} />
   }
 
   return (

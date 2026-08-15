@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { Icon } from './Icons'
+import { editableProfile, resolveProfileId } from '../lib/profileIdentity'
 
 function canvasDataUrl(canvas) {
   return canvas.toDataURL('image/jpeg', 0.82)
@@ -18,14 +19,16 @@ async function preparePhoto(file) {
   return canvasDataUrl(canvas)
 }
 
-export default function ProfileSetup({ existing = null, onSave, onCancel, onSample }) {
+export default function ProfileSetup({ existing = null, sampleProfileId = null, onSave, onCancel, onSample }) {
+  const replacesSample = existing?.id === sampleProfileId
+  const profileDraft = editableProfile(existing, sampleProfileId)
   const [form, setForm] = useState({
-    name: existing?.name || '',
-    breed: existing?.breed || '',
-    age: existing?.age || '',
-    microchip: existing?.microchip || '',
-    vaccination: existing?.vaccination || '',
-    photo: existing?.photo || '',
+    name: profileDraft?.name || '',
+    breed: profileDraft?.breed || '',
+    age: profileDraft?.age || '',
+    microchip: profileDraft?.microchip || '',
+    vaccination: profileDraft?.vaccination || '',
+    photo: profileDraft?.photo || '',
   })
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
@@ -63,7 +66,7 @@ export default function ProfileSetup({ existing = null, onSave, onCancel, onSamp
     setStatus('saving')
     try {
       await onSave({
-        id: existing?.id || crypto.randomUUID(),
+        id: resolveProfileId(existing?.id, sampleProfileId),
         name: form.name.trim(),
         breed: form.breed.trim(),
         age: form.age.trim(),
@@ -115,7 +118,7 @@ export default function ProfileSetup({ existing = null, onSave, onCancel, onSamp
             {onCancel && <button className="button secondary" type="button" onClick={onCancel}>Cancel</button>}
             <button className="button primary" type="submit" disabled={status !== 'idle'}>
               {status === 'saving' ? <span className="spinner" /> : <Icon name="check" size={18} />}
-              {status === 'saving' ? 'Saving profile' : existing ? 'Save changes' : 'Create BarkPass'}
+              {status === 'saving' ? 'Saving profile' : existing && !replacesSample ? 'Save changes' : 'Create BarkPass'}
             </button>
           </div>
           {!existing && onSample && (

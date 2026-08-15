@@ -57,24 +57,9 @@ The product stays useful even when one provider is unavailable. Local profile an
 
 The four integrations are stages of one pipeline, not four logos attached to a landing page.
 
-```text
-Owner's browser
-  profile + selected photo or video
-            |
-            v
-Vercel Functions
-  /api/analyze  -> Gemini structured visual observation
-  /api/voice    -> ElevenLabs MP3 voice note
-  /api/dogs     -> Snowflake dog profile merge
-  /api/checkins -> Snowflake dog-scoped check-in merge
-  /api/query    -> Snowflake rows + deterministic trend summary
-  /api/solana/mint -> Metaplex NFT on Solana devnet
-  /api/solana/tip  -> unsigned Phantom-approved transfer
-            |
-            v
-React client
-  observation + audio + history + Explorer proof
-```
+![BarkPass architecture: notice with Gemini, hear with ElevenLabs, remember with Snowflake and carry with Solana](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/05-architecture.png)
+
+The diagram is published as a static image so the architecture renders consistently on DEV without relying on Mermaid support.
 
 The React client handles profile state, media preparation, playback and local resilience. Vercel Functions own all provider calls and keep credentials server-side. The same random dog ID travels through browser storage, Snowflake rows, trend queries and passport metadata, so one dog's story never leaks into another's.
 
