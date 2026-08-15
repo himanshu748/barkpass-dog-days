@@ -18,7 +18,7 @@ async function preparePhoto(file) {
   return canvasDataUrl(canvas)
 }
 
-export default function ProfileSetup({ existing = null, onSave, onCancel, onDemo }) {
+export default function ProfileSetup({ existing = null, onSave, onCancel, onSample }) {
   const [form, setForm] = useState({
     name: existing?.name || '',
     breed: existing?.breed || '',
@@ -118,14 +118,14 @@ export default function ProfileSetup({ existing = null, onSave, onCancel, onDemo
               {status === 'saving' ? 'Saving profile' : existing ? 'Save changes' : 'Create BarkPass'}
             </button>
           </div>
-          {!existing && onDemo && (
-            <div className="judge-demo-entry">
+          {!existing && onSample && (
+            <div className="sample-story-entry">
               <div>
-                <strong>Judging the challenge?</strong>
-                <span>Open Bruno’s complete seven-day story, then try a fresh photo with the live stack.</span>
+                <strong>Want to look around first?</strong>
+                <span>Explore Bruno’s seven-day sample story without replacing the profile you create for your dog.</span>
               </div>
-              <button className="button judge-demo-button" type="button" onClick={onDemo} disabled={status !== 'idle'}>
-                <Icon name="arrow" size={18} /> Open the 60-second demo
+              <button className="button sample-story-button" type="button" onClick={onSample} disabled={status !== 'idle'}>
+                <Icon name="arrow" size={18} /> Explore the sample story
               </button>
             </div>
           )}

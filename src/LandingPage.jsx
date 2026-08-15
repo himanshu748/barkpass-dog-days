@@ -91,7 +91,7 @@ export default function LandingPage() {
             <p className="hero-lede">BarkPass turns a daily photo into a gentle mood read, a voiced update, a lasting wellness history and a portable pet passport.</p>
             <div className="hero-actions">
               <a className="landing-button" href="/app">Create your dog’s BarkPass <Icon name="arrow" size={18} /></a>
-              <a className="text-link" href="/app?demo=1">Open the 60-second demo</a>
+              <a className="text-link" href="/app?sample=1">Explore Bruno's sample story</a>
             </div>
             <p className="wellness-note"><Icon name="shield" size={17} /> Wellness companion, not veterinary advice.</p>
           </div>

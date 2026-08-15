@@ -8,7 +8,7 @@ import ProfileSetup from './components/ProfileSetup'
 import IntegrationStatus from './components/IntegrationStatus'
 import { Icon } from './components/Icons'
 import { connectWallet, saveDogProfile } from './lib/demoAdapters'
-import { defaultAnalysis, judgeDemoCheckins, judgeDemoDog } from './data/demo'
+import { defaultAnalysis, sampleCheckins, sampleDog } from './data/demo'
 import { loadDogCheckins, loadDogProfile, saveDogCheckins, saveDogProfileLocal } from './lib/profileStore'
 
 export default function App() {
@@ -58,8 +58,9 @@ export default function App() {
   }, [dog, editingProfile])
 
   useEffect(() => {
-    const requestedDemo = new URLSearchParams(window.location.search).get('demo') === '1'
-    if (!dog && requestedDemo) handleDemoProfile()
+    const params = new URLSearchParams(window.location.search)
+    const requestedSample = params.get('sample') === '1' || params.get('demo') === '1'
+    if (!dog && requestedSample) handleSampleProfile()
   }, [])
 
   function navigate(event, id) {
@@ -86,18 +87,18 @@ export default function App() {
     }
   }
 
-  async function handleDemoProfile() {
-    saveDogProfileLocal(judgeDemoDog)
-    saveDogCheckins(judgeDemoDog.id, judgeDemoCheckins)
-    setDog(judgeDemoDog)
-    setCheckins(judgeDemoCheckins)
+  async function handleSampleProfile() {
+    saveDogProfileLocal(sampleDog)
+    saveDogCheckins(sampleDog.id, sampleCheckins)
+    setDog(sampleDog)
+    setCheckins(sampleCheckins)
     setEditingProfile(false)
-    setProfileSync('Seven-day judge demo loaded')
+    setProfileSync('Bruno’s seven-day sample story loaded')
     try {
-      const result = await saveDogProfile(judgeDemoDog)
-      if (result.provider === 'snowflake') setProfileSync('Judge demo synced with Snowflake')
+      const result = await saveDogProfile(sampleDog)
+      if (result.provider === 'snowflake') setProfileSync('Sample story synced with Snowflake')
     } catch {
-      setProfileSync('Seven-day judge demo loaded locally')
+      setProfileSync('Sample story loaded in this browser')
     }
   }
 
@@ -116,7 +117,7 @@ export default function App() {
   }
 
   if (!dog || editingProfile) {
-    return <ProfileSetup existing={dog || null} onSave={handleProfileSaved} onCancel={dog ? () => setEditingProfile(false) : undefined} onDemo={!dog ? handleDemoProfile : undefined} />
+    return <ProfileSetup existing={dog || null} onSave={handleProfileSaved} onCancel={dog ? () => setEditingProfile(false) : undefined} onSample={!dog ? handleSampleProfile : undefined} />
   }
 
   return (

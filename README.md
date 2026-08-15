@@ -2,11 +2,11 @@
 
 BarkPass is a responsive AI wellness passport for any dog. The root route is an editorial product landing page featuring Bruno as the example dog; `/app` starts with personal dog onboarding and opens that dog’s working check-in dashboard.
 
-Public, secret-free judge demo: https://barkpass-dog-days.vercel.app/app
+Public BarkPass app: https://barkpass-dog-days.vercel.app/app
 
 Published DEV Challenge submission: https://dev.to/himanshu_748/barkpass-an-ai-wellness-passport-that-lets-dogs-speak-53d0
 
-Fastest judge path: open https://barkpass-dog-days.vercel.app/app?demo=1 to load Bruno's seven-day sample history immediately. From there, judges can ask a grounded trend question, inspect the four-track status panel, connect the labeled demo wallet, and open verified Solana devnet proof. Creating a new BarkPass still starts with a clean dog-specific profile and history.
+Optional sample story: open https://barkpass-dog-days.vercel.app/app?sample=1 to load Bruno's seven-day history immediately. From there, a visitor can ask a grounded trend question, inspect the four-track status panel, connect the labeled demo wallet, and open verified Solana devnet proof. Creating a new BarkPass still starts with a clean dog-specific profile and history. The earlier `?demo=1` link remains compatible.
 
 ## Run locally
 
@@ -32,7 +32,7 @@ Protected Vercel deployments keep sponsor credentials server-side. Their sensiti
 
 Live Preview verification on August 15, 2026 confirmed Gemini structured image analysis, an ElevenLabs MP3 response, unsigned Solana devnet tip preparation, and a real Snowflake write/query path. All four sponsor integrations now live on the protected `barkpass-dog-days` Preview; the obsolete Ember project was removed after migration. A Luna profile and three dog-scoped check-ins were persisted in `BARKPASS.PUBLIC`; the returned answer reported an average energy of 7.0 and a range of 6 to 8. The browser still keeps profiles and history usable through the explicitly labeled local fallback when a sponsor service is unavailable.
 
-The public judge demo intentionally contains no sponsor credentials. It exercises the complete interface through labeled fallbacks without exposing billable provider routes. `BARKPASS_PUBLIC_ORIGIN` lets a protected live-provider deployment mint metadata that remains readable through the public project.
+The public deployment intentionally contains no sponsor credentials. It exercises the complete interface through labeled fallbacks without exposing billable provider routes. `BARKPASS_PUBLIC_ORIGIN` lets a protected live-provider deployment mint metadata that remains readable through the public project.
 
 The app exposes these endpoints:
 
