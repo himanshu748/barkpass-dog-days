@@ -21,7 +21,8 @@ This review uses the BarkPass product brief and DEV Weekend Challenge template s
 - README note for any work outside the contest window
 - New work created during the challenge window
 
-## External checks still required
+## Submission status
 
 - Sign and broadcast the prepared 0.01 SOL shelter tip from Phantom, then add its Explorer link.
-- Publish the completed DEV post before the deadline. The public live link satisfies the brief's demo-video-or-live-link requirement; a short video is optional polish.
+- Published the completed DEV post before the deadline: https://dev.to/himanshu_748/barkpass-an-ai-wellness-passport-that-lets-dogs-speak-53d0
+- The public live link satisfies the brief's demo-video-or-live-link requirement; no video is required.

@@ -4,6 +4,8 @@ BarkPass is a responsive AI wellness passport for any dog. The root route is an 
 
 Public, secret-free judge demo: https://barkpass-dog-days.vercel.app/app
 
+Published DEV Challenge submission: https://dev.to/himanshu_748/barkpass-an-ai-wellness-passport-that-lets-dogs-speak-53d0
+
 Fastest judge path: open https://barkpass-dog-days.vercel.app/app?demo=1 to load Bruno's seven-day sample history immediately. From there, judges can ask a grounded trend question, inspect the four-track status panel, connect the labeled demo wallet, and open verified Solana devnet proof. Creating a new BarkPass still starts with a clean dog-specific profile and history.
 
 ## Run locally
@@ -42,7 +44,7 @@ The app exposes these endpoints:
 - `POST /api/solana/mint`
 - `POST /api/solana/tip`
 
-Run `npm test` for API contract checks and `npm run build` for the production client build. The `rpc-websockets` override is intentionally pinned at 9.3.8 so Vercel's CommonJS function bundle receives a compatible `uuid` release. See `CHALLENGE_READINESS.md` for the brief-to-implementation matrix and remaining live verification steps.
+Run `npm test` for API contract checks and `npm run build` for the production client build. The `rpc-websockets` override is intentionally pinned at 9.3.8 so Vercel's CommonJS function bundle receives a compatible `uuid` release. See `CHALLENGE_READINESS.md` for the brief-to-implementation matrix and verification record.
 
 Dog IDs are random per browser and are carried through profile storage, check-ins, Snowflake history queries and Solana passport metadata so one dog never inherits Bruno’s demo history. Profile photos remain local to the browser; prepared check-in frames are sent to Gemini only after the owner chooses a file.
 

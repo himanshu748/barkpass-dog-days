@@ -1,10 +1,12 @@
 ---
 title: BarkPass: An AI wellness passport that lets dogs speak
-published: false
+published: true
 tags: devchallenge, weekendchallenge, ai, webdev
 ---
 
 *This is a submission for [Weekend Challenge: Dog Days Edition](https://dev.to/challenges/weekend-2026-08-13).*
+
+**Published post:** https://dev.to/himanshu_748/barkpass-an-ai-wellness-passport-that-lets-dogs-speak-53d0
 
 ## What I Built
 
@@ -13,6 +15,8 @@ BarkPass is a daily wellness passport for any dog. An owner creates a profile, u
 The idea came from a simple problem: dog owners notice small changes every day, but those observations are usually scattered across photos, notes, and memory. BarkPass turns the easiest habit, taking a photo, into a repeatable check-in that is useful without pretending to replace a veterinarian.
 
 Bruno appears on the editorial landing page as an example. The actual app onboards each visitor's dog and creates an isolated random dog ID for its profile, check-ins, trend queries, and passport metadata.
+
+![BarkPass landing page](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/01-landing-page.png)
 
 ### What works today
 
@@ -32,9 +36,11 @@ Bruno appears on the editorial landing page as an example. The actual app onboar
 
 **One-click judge demo:** https://barkpass-dog-days.vercel.app/app?demo=1
 
+![BarkPass personalized dashboard](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/02-personalized-dashboard.png)
+
 The public deployment is intentionally secret-free and uses BarkPass's labeled local fallbacks. Live provider verification evidence is recorded separately so sponsor credentials are not exposed through an unrestricted demo endpoint.
 
-The public live link fulfills the supplied brief's demo-video-or-embedded-live-link requirement. A 60 to 90 second video can still be added as optional presentation polish.
+The public live link fulfills the supplied brief's demo-video-or-embedded-live-link requirement.
 
 Suggested flow for judges:
 
@@ -78,6 +84,8 @@ Profiles are merged into `BARKPASS_DOGS`, and check-ins are merged into `BARKPAS
 
 The new 120-day Snowflake student trial is active. BarkPass uses an X-Small auto-suspending warehouse and a dedicated `BARKPASS_APP_USER` service identity with key-pair authentication and a least-privilege role. The live BarkPass Preview stored Luna plus three check-ins with energies 6, 8, and 7. Its grounded response was: “Across 3 Snowflake check-ins, Luna averaged 7.0 out of 10. Energy ranged from 6 to 8 and finished higher compared with the first saved day.” A direct worksheet query independently returned `dog_luna_123`, 3 rows, average 7.0, minimum 6, and maximum 8.
 
+![Snowflake aggregate proof](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/04-snowflake-proof.png)
+
 ### Solana
 
 The passport endpoint creates dog-specific Metaplex metadata containing breed, age, microchip ID, and vaccination date. Minting uses a server-side devnet authority, while shelter tips are prepared server-side and must be approved by the owner's Phantom wallet. Explorer links are returned for verifiable proof.
@@ -96,19 +104,6 @@ The app includes nine API contract tests covering structured Gemini output, Elev
 - Best Use of ElevenLabs
 - Best Use of Snowflake
 - Best Use of Solana
-
-## Evidence to add before publishing
-
-- Captured: `submission-assets/01-landing-page.png`
-- Captured: `submission-assets/02-personalized-dashboard.png`
-- Captured: `submission-assets/03-mobile-dashboard.png`
-- Captured: five-photo Gemini evaluation and ElevenLabs latency in `submission-assets/VERIFICATION.md`
-- Captured: Snowflake service-user profile write, three-check-in history answer, and direct aggregate proof in `submission-assets/04-snowflake-proof.png`
-- Captured: finalized Solana devnet mint and transaction links; Phantom-signed shelter tip remains
-- Public demo: https://barkpass-dog-days.vercel.app/app
-- One-click judge demo: https://barkpass-dog-days.vercel.app/app?demo=1
-- Public repository: https://github.com/himanshu748/barkpass-dog-days
-- Live-link requirement: complete; optional video not yet recorded
 
 ## Known Limitations
 
