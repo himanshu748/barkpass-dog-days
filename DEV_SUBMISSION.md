@@ -53,15 +53,55 @@ The passport is a separate, optional action. It carries identity and care detail
 
 The product stays useful even when one provider is unavailable. Local profile and check-in history continue to work. Every non-provider result is labelled in the interface so sample data is never presented as live sponsor output.
 
-## The architecture
+## The architecture, end to end
 
 The four integrations are stages of one pipeline, not four logos attached to a landing page.
 
 ![BarkPass architecture: notice with Gemini, hear with ElevenLabs, remember with Snowflake and carry with Solana](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/05-architecture.png)
 
-The diagram is published as a static image so the architecture renders consistently on DEV without relying on Mermaid support.
+The diagram is a static 1,280 × 720 image so it renders consistently on DEV without depending on Mermaid support.
 
-The React client handles profile state, media preparation, playback and local resilience. Vercel Functions own all provider calls and keep credentials server-side. The same random dog ID travels through browser storage, Snowflake rows, trend queries and passport metadata, so one dog's story never leaks into another's.
+### The five layers
+
+| Layer | Responsibility | What crosses the boundary |
+| --- | --- | --- |
+| React client | Dog profile state, media preparation, check-in UI, audio playback, Phantom connection and labelled local resilience | A prepared JPEG, normalized observation records, dog identity fields and owner-approved wallet actions |
+| Vercel Functions | Validation, provider orchestration, normalization and credential isolation | Only the minimum provider-specific payload; no provider secret is returned to the browser |
+| Google AI + ElevenLabs | Convert one selected frame into structured visible signals, then convert a bounded sentence into audio | Gemini receives the prepared frame; ElevenLabs receives the derived sentence, never the photo |
+| Snowflake | Durable dog profiles, idempotent check-ins and dog-scoped trend queries | Text identity fields and structured observations; the original profile/check-in photo is not stored there |
+| Solana devnet | Public passport metadata, one-of-one mint proof and unsigned shelter-tip preparation | Selected passport identity fields and the connected public wallet address |
+
+### One check-in request sequence
+
+1. **Prepare in the browser.** A chosen photo is resized to a maximum edge of 1,600 pixels and encoded as JPEG at 0.84 quality. For a short video, BarkPass seeks to an early representative frame and sends that frame rather than the whole clip. Nothing leaves the browser before the owner chooses media.
+2. **Observe through `POST /api/analyze`.** The function checks the method, media type and payload size before calling `gemini-2.5-flash`. Gemini is constrained to a JSON schema. The function parses and normalizes the response again, clamps energy and confidence to their allowed ranges, caps visible flags, and derives the bounded voice sentence on the server.
+3. **Speak through `POST /api/voice`.** Only that short sentence is sent to ElevenLabs. The function limits it to 500 characters and returns private-cacheable `audio/mpeg`; the browser creates a temporary object URL for playback.
+4. **Remember through `POST /api/dogs` and `POST /api/checkins`.** Snowflake receives the current random `dog_id`, profile fields and the normalized observation. `MERGE` makes profile and check-in retries idempotent instead of duplicating history.
+5. **Answer through `POST /api/query`.** The function synchronizes at most 30 recent local check-ins, selects only rows for the requested `dog_id`, and computes the row count, average, range, direction and most common mood from the returned values. The prose is assembled from those facts; an unrestricted model does not invent the trend answer.
+6. **Carry through `POST /api/solana/mint`.** The server validates the current dog, creates a same-origin metadata URL and uses Metaplex to mint a one-of-one `BARK` token on devnet. The response returns both the mint and transaction Explorer URLs.
+7. **Preserve owner control through `POST /api/solana/tip`.** The server builds a 0.01 SOL devnet transfer with the connected wallet as fee payer, but deliberately does not sign it. The browser hands the serialized transaction to Phantom; only the owner can approve and broadcast it.
+
+### Identity and data isolation
+
+The same random dog ID is the join key across browser storage, `BARKPASS_DOGS`, `BARKPASS_CHECKINS`, history queries and passport metadata. It is generated when a real profile is created and preserved when that profile is edited. Replacing the optional Bruno sample clears every sample-only field and creates a fresh ID, so a new owner cannot inherit Bruno's photo, microchip, vaccination or seven-day history.
+
+Snowflake has two durable entities:
+
+```text
+BARKPASS_DOGS     dog_id → name, breed, age, microchip, vaccination
+BARKPASS_CHECKINS (checkin_id, dog_id) → date, mood, energy,
+                    posture, flags, confidence, summary
+```
+
+The compound check-in key matters: `checkin_id` makes retries safe, while `dog_id` prevents one dog's retry from overwriting another dog's record. Query parameters are bound rather than concatenated, and history reads always include `WHERE dog_id = ?`.
+
+### Trust boundaries and failure behavior
+
+The browser is treated as public. Gemini, ElevenLabs, Snowflake and Solana credentials exist only in Vercel's server environment. Functions validate and bound every incoming field before a provider call. Snowflake uses RSA key-pair authentication through a dedicated least-privilege service role, while the Solana authority is limited to devnet. The shelter-tip path is intentionally split: the server can prepare a transaction, but Phantom retains the owner's signing authority.
+
+Each client adapter also has an explicit resilience boundary. If vision is unavailable, a clearly labelled sample observation keeps the interface demonstrable. If voice fails, device speech can keep the ritual audible. If Snowflake is unavailable, the current browser retains local history and computes the same transparent statistics. On-chain actions never pretend to succeed: live responses return Explorer evidence, verified examples are labelled as examples, and a real tip cannot leave the wallet without Phantom.
+
+This separation is what lets BarkPass degrade one capability without collapsing the whole daily check-in—and without presenting fallback output as live sponsor output.
 
 ## How Google AI observes without pretending to diagnose
 
@@ -113,7 +153,7 @@ A score is useful. A sentence is memorable.
 
 BarkPass turns the normalized observation into one short first-person line. High energy produces a more active suggestion. Low energy produces a quieter one. A visible flag asks the owner to take another look without claiming a diagnosis. That bounded line is sent to ElevenLabs using `eleven_flash_v2_5` and returned as a 44.1 kHz, 128 kbps MP3.
 
-The measured live call produced an 84,889-byte MP3 in 1.55 seconds. Combined with the slowest Gemini call, the measured provider path was 12.08 seconds, inside the brief's 15-second target.
+A timed live call produced an 84,889-byte MP3 in 1.55 seconds. The final Production recheck returned HTTP 200 with a playable 52,288-byte MPEG; output size varies with the generated sentence. Combined with the slowest timed Gemini call, the measured provider path was 12.08 seconds, inside the brief's 15-second target.
 
 If the provider cannot respond, BarkPass can use device speech so the daily ritual does not dead-end. The interface labels that output as a fallback. Device speech is resilience, not evidence of ElevenLabs usage. The provider-backed measurement and playable MP3 are the evidence.
 
@@ -198,7 +238,7 @@ The app supports photo and short-video input, loading, empty, success and error 
 * Shelter tips require Phantom approval.
 * BarkPass is a wellness companion, not veterinary advice.
 
-The public app is intentionally secret-free. The real Gemini, ElevenLabs, Snowflake and Solana paths were exercised on a protected Vercel Preview, while the public repository contains the complete server implementation and reproducible verification record. No provider key, Snowflake private key or Solana vault secret is shipped to the client bundle.
+The public client bundle is intentionally secret-free. All four real provider paths now run through the public Production deployment's same-origin server functions, while the repository contains the complete server implementation and reproducible verification record. No provider key, Snowflake private key or Solana vault secret is shipped to the browser.
 
 ## How I tested it
 
@@ -261,7 +301,7 @@ The theme connection is direct: the whole product begins with a dog owner's dail
 
 ## Known limitations
 
-BarkPass is a weekend prototype, not a clinical product. Visual observations can be wrong, which is why confidence stays visible and the language remains non-diagnostic. The public app uses labelled local resilience because paid provider credentials are not exposed publicly. The shelter-tip transaction has been prepared successfully, but final broadcast still requires an owner's Phantom approval. There is no account system or multi-device sync yet.
+BarkPass is a weekend prototype, not a clinical product. Visual observations can be wrong, which is why confidence stays visible and the language remains non-diagnostic. The Production app has all four provider routes configured, while labelled local resilience keeps a check-in usable during a provider outage. The shelter-tip transaction has been prepared successfully, but final broadcast still requires an owner's Phantom approval. There is no account system or multi-device sync yet.
 
 These are explicit boundaries, not hidden promises.
 
