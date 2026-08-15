@@ -24,6 +24,12 @@ function ActionPanel({ title, copy, action, icon, buttonLabel, wallet, dog, amou
     }
   }
 
+  const completeLabel = result?.mode === 'live'
+    ? 'Confirmed on devnet'
+    : result?.mode === 'verified-example'
+      ? 'Verified proof ready'
+      : 'Demo ready'
+
   return (
     <article className="chain-action">
       <Icon name={icon} size={28} />
@@ -35,12 +41,13 @@ function ActionPanel({ title, copy, action, icon, buttonLabel, wallet, dog, amou
       <div className="chain-control">
         <button className="button outline" type="button" onClick={handleAction} disabled={status === 'loading' || status === 'complete'}>
           {status === 'loading' ? <span className="spinner red" /> : <Icon name={status === 'complete' ? 'check' : icon} size={18} />}
-          {status === 'loading' ? 'Confirming' : status === 'complete' ? 'Confirmed' : buttonLabel}
+          {status === 'loading' ? 'Confirming' : status === 'complete' ? completeLabel : buttonLabel}
         </button>
         {error && <p className="form-error" role="alert">{error}</p>}
+        {result?.message && <p className="chain-result-note" role="status">{result.message}</p>}
         {result && (
-          <a href={result.explorerUrl} target="_blank" rel="noreferrer" className="explorer-link">
-            {result.mode === 'live' ? 'View on Solana Explorer' : 'View demo on Solana Explorer'} <Icon name="arrow" size={15} />
+          result.explorerUrl && <a href={result.explorerUrl} target="_blank" rel="noreferrer" className="explorer-link">
+            {result.mode === 'live' ? 'View on Solana Explorer' : 'View verified live example'} <Icon name="arrow" size={15} />
           </a>
         )}
       </div>

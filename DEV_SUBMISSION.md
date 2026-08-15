@@ -30,17 +30,19 @@ Bruno appears on the editorial landing page as an example. The actual app onboar
 
 **Public demo:** https://barkpass-dog-days.vercel.app/app
 
+**One-click judge demo:** https://barkpass-dog-days.vercel.app/app?demo=1
+
 The public deployment is intentionally secret-free and uses BarkPass's labeled local fallbacks. Live provider verification evidence is recorded separately so sponsor credentials are not exposed through an unrestricted demo endpoint.
 
-**Video:** TODO: add the final 60 to 90 second walkthrough.
+The public live link fulfills the supplied brief's demo-video-or-embedded-live-link requirement. A 60 to 90 second video can still be added as optional presentation polish.
 
 Suggested flow for judges:
 
-1. Open `/app` and create a profile for any dog.
-2. Upload a dog photo and review the Gemini mood, energy, posture, and confidence fields.
-3. Play the ElevenLabs voice note.
-4. Save at least three check-ins and ask a history question.
-5. Connect Phantom on devnet, mint the passport, and prepare the shelter tip.
+1. Open `/app?demo=1` to load Bruno's seven-day story immediately.
+2. Ask the prefilled history question and inspect the seven underlying energy values.
+3. Upload a fresh dog photo to exercise the Gemini read, then play the ElevenLabs voice note.
+4. Open the passport section and view the verified Solana devnet mint.
+5. Create a clean profile from `/app` to confirm that BarkPass works for any dog, not only Bruno.
 
 ## Code
 
@@ -74,7 +76,7 @@ The measured ElevenLabs call returned an 84,889-byte MP3 in 1.55 seconds. Even w
 
 Profiles are merged into `BARKPASS_DOGS`, and check-ins are merged into `BARKPASS_CHECKINS` using both check-in ID and dog ID. History questions query only the current dog's recent rows. The answer is calculated from returned energy values and mood counts so it cannot invent a trend that is absent from the data.
 
-The replacement 120-day Snowflake student trial has been requested and its activation email sent. TODO before publishing: activate the new account, save three dog-scoped rows, and include the resulting grounded answer and screenshot here.
+The new 120-day Snowflake student trial is active. BarkPass uses an X-Small auto-suspending warehouse and a dedicated `BARKPASS_APP_USER` service identity with key-pair authentication and a least-privilege role. The live BarkPass Preview stored Luna plus three check-ins with energies 6, 8, and 7. Its grounded response was: “Across 3 Snowflake check-ins, Luna averaged 7.0 out of 10. Energy ranged from 6 to 8 and finished higher compared with the first saved day.” A direct worksheet query independently returned `dog_luna_123`, 3 rows, average 7.0, minimum 6, and maximum 8.
 
 ### Solana
 
@@ -86,7 +88,7 @@ Luna's BarkPass was minted successfully on devnet as [`AAutLzLLaXR74Dfr1jtJdftQu
 
 The interface preserves local profiles and check-ins when a sponsor service is unavailable. It never presents fallback data as live provider output. BarkPass is a wellness companion, not veterinary advice, and its prompts and copy avoid medical diagnoses.
 
-The app includes seven API contract tests covering structured Gemini output, ElevenLabs audio, dog validation, Snowflake input validation, dog-scoped summaries, dynamic passport metadata, and pre-mint validation.
+The app includes nine API contract tests covering structured Gemini output, ElevenLabs audio, dog validation, Snowflake input validation, key-pair authentication and status, dog-scoped summaries, dynamic passport metadata, and pre-mint validation.
 
 ## Prize Categories
 
@@ -101,11 +103,12 @@ The app includes seven API contract tests covering structured Gemini output, Ele
 - Captured: `submission-assets/02-personalized-dashboard.png`
 - Captured: `submission-assets/03-mobile-dashboard.png`
 - Captured: five-photo Gemini evaluation and ElevenLabs latency in `submission-assets/VERIFICATION.md`
-- TODO: Snowflake three-check-in history answer
+- Captured: Snowflake service-user profile write, three-check-in history answer, and direct aggregate proof in `submission-assets/04-snowflake-proof.png`
 - Captured: finalized Solana devnet mint and transaction links; Phantom-signed shelter tip remains
 - Public demo: https://barkpass-dog-days.vercel.app/app
+- One-click judge demo: https://barkpass-dog-days.vercel.app/app?demo=1
 - Public repository: https://github.com/himanshu748/barkpass-dog-days
-- TODO: demo video URL
+- Live-link requirement: complete; optional video not yet recorded
 
 ## Known Limitations
 

@@ -7,6 +7,8 @@ import dogs from '../api/dogs.js'
 import metadata from '../api/passport-metadata.js'
 import mint from '../api/solana/mint.js'
 import { summarize } from '../api/query.js'
+import { connectionOptions } from '../api/_snowflake.js'
+import integrations from '../api/integrations.js'
 
 test('Gemini route normalizes a structured visual read', async () => {
   const originalFetch = globalThis.fetch
@@ -68,6 +70,46 @@ test('Snowflake route validates incomplete check-ins before connecting', async (
     body: JSON.stringify({ mood: 'Relaxed' }),
   }))
   assert.equal(response.status, 400)
+})
+
+test('Snowflake prefers key-pair authentication without exposing a password', () => {
+  const original = { ...process.env }
+  Object.assign(process.env, {
+    SNOWFLAKE_ACCOUNT: 'org-account',
+    SNOWFLAKE_USER: 'barkpass_user',
+    SNOWFLAKE_PASSWORD: 'unused-password',
+    SNOWFLAKE_PRIVATE_KEY_BASE64: Buffer.from('-----BEGIN PRIVATE KEY-----\ntest\n-----END PRIVATE KEY-----').toString('base64'),
+    SNOWFLAKE_WAREHOUSE: 'BARKPASS_WH',
+    SNOWFLAKE_DATABASE: 'BARKPASS',
+    SNOWFLAKE_SCHEMA: 'PUBLIC',
+  })
+
+  try {
+    const options = connectionOptions()
+    assert.equal(options.authenticator, 'SNOWFLAKE_JWT')
+    assert.match(options.privateKey, /BEGIN PRIVATE KEY/)
+    assert.equal('password' in options, false)
+  } finally {
+    process.env = original
+  }
+})
+
+test('Integration status recognizes Snowflake key-pair authentication', async () => {
+  const original = { ...process.env }
+  Object.assign(process.env, {
+    SNOWFLAKE_ACCOUNT: 'org-account',
+    SNOWFLAKE_USER: 'barkpass_user',
+    SNOWFLAKE_PRIVATE_KEY_BASE64: 'encoded-private-key',
+  })
+  delete process.env.SNOWFLAKE_PASSWORD
+
+  try {
+    const response = await integrations.fetch(new Request('https://barkpass.test/api/integrations'))
+    const body = await response.json()
+    assert.equal(body.providers.snowflake, true)
+  } finally {
+    process.env = original
+  }
 })
 
 test('Dog profiles validate before Snowflake connects', async () => {

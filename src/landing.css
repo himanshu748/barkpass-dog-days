@@ -193,6 +193,9 @@
 .passport-story-copy ul { display: grid; gap: 14px; margin: 34px 0; padding: 0; list-style: none; }
 .passport-story-copy li { display: flex; align-items: center; gap: 10px; color: #e9eff0; font-size: .76rem; }
 .passport-story-copy li svg { color: #f4c890; }
+.passport-story-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; }
+.verified-proof-link { min-height: 44px; display: inline-flex; align-items: center; gap: 7px; color: #eef4f5; font-size: .72rem; font-weight: 700; text-underline-offset: 4px; }
+.verified-proof-link:hover { color: #f4c890; }
 
 .closing-section { min-height: 650px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 24px; text-align: center; background: var(--paper); }
 .closing-section .dog-portrait { width: min(720px, 100%); aspect-ratio: 3 / 2; display: block; margin-bottom: 46px; object-fit: cover; object-position: center 46%; border: 1px solid var(--line-strong); border-radius: 14px; box-shadow: 0 22px 54px rgba(42,36,30,.13); }
@@ -264,6 +267,9 @@
   .trend-card { padding: 22px 14px; }
   .trend-card > div { display: grid; }
   .passport-object { width: 92vw; padding: 27px; }
+  .passport-story-actions { align-items: stretch; flex-direction: column; }
+  .passport-story-actions .landing-button { width: 100%; }
+  .verified-proof-link { justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -208,7 +208,7 @@ export default function CheckinExperience({ dog, initialAnalysis, latestCheckin,
           </div>
           <div>
             <dt>Energy</dt>
-            <dd><strong>{hasReading ? analysis.energy_level : '—'}</strong>{hasReading && <span>/10</span>}</dd>
+            <dd><strong>{hasReading ? analysis.energy_level : 'Not yet'}</strong>{hasReading && <span>/10</span>}</dd>
           </div>
           <div>
             <dt>Posture</dt>
@@ -220,7 +220,7 @@ export default function CheckinExperience({ dog, initialAnalysis, latestCheckin,
           </div>
           <div>
             <dt>Confidence</dt>
-            <dd>{hasReading ? `${Math.round(analysis.confidence * 100)}%` : '—'}</dd>
+            <dd>{hasReading ? `${Math.round(analysis.confidence * 100)}%` : 'Not yet'}</dd>
           </div>
         </dl>
 

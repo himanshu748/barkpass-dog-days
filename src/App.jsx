@@ -5,9 +5,10 @@ import HistorySection from './components/HistorySection'
 import PassportActions from './components/PassportActions'
 import DogPortrait from './components/DogPortrait'
 import ProfileSetup from './components/ProfileSetup'
+import IntegrationStatus from './components/IntegrationStatus'
 import { Icon } from './components/Icons'
 import { connectWallet, saveDogProfile } from './lib/demoAdapters'
-import { defaultAnalysis } from './data/demo'
+import { defaultAnalysis, judgeDemoCheckins, judgeDemoDog } from './data/demo'
 import { loadDogCheckins, loadDogProfile, saveDogCheckins, saveDogProfileLocal } from './lib/profileStore'
 
 export default function App() {
@@ -25,13 +26,14 @@ export default function App() {
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll('main section[id]'))
+    if (!('IntersectionObserver' in window)) return
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)
       if (visible[0]) setActive(visible[0].target.id)
     }, { rootMargin: '-20% 0px -55%', threshold: [0.1, 0.4, 0.7] })
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
-  }, [])
+  }, [dog, editingProfile])
 
   useEffect(() => {
     if (dog) saveDogCheckins(dog.id, checkins)
@@ -39,6 +41,10 @@ export default function App() {
 
   useEffect(() => {
     const revealItems = document.querySelectorAll('.reveal-section')
+    if (!('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'))
+      return
+    }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -49,6 +55,11 @@ export default function App() {
     }, { threshold: 0.08 })
     revealItems.forEach((item) => observer.observe(item))
     return () => observer.disconnect()
+  }, [dog, editingProfile])
+
+  useEffect(() => {
+    const requestedDemo = new URLSearchParams(window.location.search).get('demo') === '1'
+    if (!dog && requestedDemo) handleDemoProfile()
   }, [])
 
   function navigate(event, id) {
@@ -75,6 +86,21 @@ export default function App() {
     }
   }
 
+  async function handleDemoProfile() {
+    saveDogProfileLocal(judgeDemoDog)
+    saveDogCheckins(judgeDemoDog.id, judgeDemoCheckins)
+    setDog(judgeDemoDog)
+    setCheckins(judgeDemoCheckins)
+    setEditingProfile(false)
+    setProfileSync('Seven-day judge demo loaded')
+    try {
+      const result = await saveDogProfile(judgeDemoDog)
+      if (result.provider === 'snowflake') setProfileSync('Judge demo synced with Snowflake')
+    } catch {
+      setProfileSync('Seven-day judge demo loaded locally')
+    }
+  }
+
   async function handleWallet() {
     if (wallet) return
     setWalletError('')
@@ -90,7 +116,7 @@ export default function App() {
   }
 
   if (!dog || editingProfile) {
-    return <ProfileSetup existing={dog || null} onSave={handleProfileSaved} onCancel={dog ? () => setEditingProfile(false) : undefined} />
+    return <ProfileSetup existing={dog || null} onSave={handleProfileSaved} onCancel={dog ? () => setEditingProfile(false) : undefined} onDemo={!dog ? handleDemoProfile : undefined} />
   }
 
   return (
@@ -117,6 +143,8 @@ export default function App() {
           </button>
           {walletError && <p className="wallet-error" role="alert">{walletError}</p>}
         </header>
+
+        <IntegrationStatus />
 
         <CheckinExperience key={dog.id} dog={dog} initialAnalysis={defaultAnalysis} latestCheckin={checkins.at(-1)} onCheckinSaved={handleCheckinSaved} />
         <HistorySection key={`history-${dog.id}`} dog={dog} checkins={checkins} />

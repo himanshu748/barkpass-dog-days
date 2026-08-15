@@ -218,10 +218,16 @@ export async function runChainAction(action, wallet, dog) {
   if (remote) return remote
 
   await wait(1000)
-  const signature = action === 'mint' ? '5BarkPass7JcQ2M1sZx9' : '3ShelterTip8KuR4P6nWt2'
+  if (action === 'mint') {
+    return {
+      signature: '3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m',
+      explorerUrl: 'https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet',
+      mode: 'verified-example',
+      message: 'Live devnet proof from BarkPass’s verified Luna passport.',
+    }
+  }
   return {
-    signature,
-    explorerUrl: `https://explorer.solana.com/tx/${signature}?cluster=devnet`,
     mode: 'demo',
+    message: 'Tip preparation is available in the protected live-provider demo. Phantom must approve the final devnet transaction.',
   }
 }

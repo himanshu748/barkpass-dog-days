@@ -10,19 +10,31 @@ const dogsTableName = /^[A-Za-z_][A-Za-z0-9_$]*$/.test(process.env.SNOWFLAKE_DOG
   : 'BARKPASS_DOGS'
 
 function connect() {
-  const connection = snowflake.createConnection({
-    account: requireEnv('SNOWFLAKE_ACCOUNT'),
-    username: requireEnv('SNOWFLAKE_USER'),
-    password: requireEnv('SNOWFLAKE_PASSWORD'),
-    warehouse: requireEnv('SNOWFLAKE_WAREHOUSE'),
-    database: requireEnv('SNOWFLAKE_DATABASE'),
-    schema: requireEnv('SNOWFLAKE_SCHEMA'),
-    application: 'BARKPASS_DEV_WEEKEND',
-  })
+  const connection = snowflake.createConnection(connectionOptions())
 
   return new Promise((resolve, reject) => {
     connection.connect((error) => error ? reject(error) : resolve(connection))
   })
+}
+
+export function connectionOptions() {
+  const encodedPrivateKey = process.env.SNOWFLAKE_PRIVATE_KEY_BASE64?.trim()
+  const authentication = encodedPrivateKey
+    ? {
+        authenticator: 'SNOWFLAKE_JWT',
+        privateKey: Buffer.from(encodedPrivateKey, 'base64').toString('utf8'),
+      }
+    : { password: requireEnv('SNOWFLAKE_PASSWORD') }
+
+  return {
+    account: requireEnv('SNOWFLAKE_ACCOUNT'),
+    username: requireEnv('SNOWFLAKE_USER'),
+    warehouse: requireEnv('SNOWFLAKE_WAREHOUSE'),
+    database: requireEnv('SNOWFLAKE_DATABASE'),
+    schema: requireEnv('SNOWFLAKE_SCHEMA'),
+    application: 'BARKPASS_DEV_WEEKEND',
+    ...authentication,
+  }
 }
 
 export function execute(connection, sqlText, binds = []) {

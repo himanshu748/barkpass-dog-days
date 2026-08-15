@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BarkPass DEV Weekend Challenge Submission</title>
+    <style>
+      :root { color: #2a241e; background: #f6f0e4; font: 16px/1.65 Arial, sans-serif; }
+      body { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+      h1, h2, h3 { line-height: 1.12; }
+      h1 { font-size: clamp(2.8rem, 8vw, 5.6rem); margin-bottom: 12px; }
+      h2 { margin-top: 52px; font-size: 2rem; }
+      h3 { margin-top: 30px; }
+      a { color: #8e321f; }
+      .tagline { max-width: 720px; font-size: 1.25rem; }
+      .links { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0; }
+      .links a { padding: 10px 14px; color: white; background: #a83c25; border-radius: 8px; font-weight: 700; text-decoration: none; }
+      .panel { margin: 28px 0; padding: 22px; background: #fffdf8; border: 1px solid #cbbda9; border-radius: 10px; }
+      li { margin: 8px 0; }
+      code { padding: 2px 5px; background: #eee4d5; border-radius: 4px; }
+      footer { margin-top: 54px; padding-top: 22px; border-top: 1px solid #cbbda9; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p>DEV Weekend Challenge, Dog Days Edition</p>
+      <h1>BarkPass</h1>
+      <p class="tagline">An AI wellness passport that turns one daily dog photo into a visible-signal check-in, a voiced update, a grounded history and a portable devnet passport.</p>
+      <div class="links">
+        <a href="https://barkpass-dog-days.vercel.app/app?demo=1">Open the 60-second demo</a>
+        <a href="https://barkpass-dog-days.vercel.app/">View the landing page</a>
+        <a href="https://github.com/himanshu748/barkpass-dog-days">Browse the source</a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>What I built</h2>
+        <p>Dog owners notice small changes every day, but those observations usually disappear into photos, scattered notes and memory. BarkPass turns the easiest existing habit, taking a photo, into a repeatable wellness check-in without pretending to diagnose a condition or replace a veterinarian.</p>
+        <p>An owner creates a profile for any dog and uploads a photo or short video. Gemini returns a strict structured read of visible mood, energy, posture and flags. ElevenLabs turns the result into a short first-person voice note. Snowflake stores dog-scoped check-ins and grounds natural-language trend answers in queried rows. Solana provides a portable devnet passport plus a Phantom-approved shelter-tip rail.</p>
+        <p>Bruno is the editorial example, not a hardcoded user. Every new BarkPass receives its own dog ID, profile, check-ins, Snowflake query scope and passport metadata.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Fast judge path</h2>
+        <ol>
+          <li>Open the <a href="https://barkpass-dog-days.vercel.app/app?demo=1">one-click judge demo</a>.</li>
+          <li>Ask the prefilled history question and inspect seven underlying energy values.</li>
+          <li>Upload a fresh dog photo to run the visual-read flow, then play the voice note.</li>
+          <li>Open Passport and follow the verified Solana devnet mint link.</li>
+          <li>Open <a href="https://barkpass-dog-days.vercel.app/app">clean onboarding</a> to create a BarkPass for another dog.</li>
+        </ol>
+        <p>The public deployment is secret-free and labels its local fallbacks. Live sponsor-provider verification is documented in the repository so unrestricted endpoints cannot burn billable credentials.</p>
+      </section>
+
+      <section>
+        <h2>How the sponsor stack works</h2>
+
+        <h3>Google AI</h3>
+        <p>The browser downsizes a selected photo or extracts one video frame before calling the backend. Gemini receives a non-diagnostic behavior-observer instruction and a strict JSON schema for mood, energy from 1 to 10, posture notes, visible flags and confidence. Five real-photo acceptance tests produced four distinct moods and energy values from 4 to 9.</p>
+
+        <h3>ElevenLabs</h3>
+        <p>BarkPass converts the structured read into a short line spoken from the dog's perspective. ElevenLabs returns an MP3 that plays inline without a refresh. The measured combined Gemini and ElevenLabs provider path stayed below the 15-second target.</p>
+
+        <h3>Snowflake</h3>
+        <p>Profiles and check-ins are merged into dog-scoped tables through a least-privilege service user with key-pair authentication. History answers are calculated from rows queried for the requested dog ID, so the interface can show both the summary and the underlying values. A live three-row acceptance set returned an average of 7.0 and a range from 6 to 8, matching the direct worksheet aggregate.</p>
+
+        <h3>Solana</h3>
+        <p>Metaplex mints dog-specific passport metadata on devnet. The shelter-tip endpoint prepares a fixed 0.01 devnet SOL transaction that the connected Phantom wallet must approve. Luna's verified BarkPass NFT has supply one and a finalized mint transaction.</p>
+        <ul>
+          <li><a href="https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet">Verified BarkPass mint</a></li>
+          <li><a href="https://explorer.solana.com/tx/3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m?cluster=devnet">Finalized mint transaction</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Technical highlights</h2>
+        <ul>
+          <li>Vite and React frontend with same-origin Vercel Functions.</li>
+          <li>Client-side photo resizing and video-frame extraction.</li>
+          <li>Strict Gemini response schema plus wellness safety guardrails.</li>
+          <li>Playable ElevenLabs MP3 with an explicitly labeled browser fallback.</li>
+          <li>Snowflake key-pair authentication and dog-scoped upserts and queries.</li>
+          <li>Metaplex Token Metadata minting and a Phantom-signed transfer flow.</li>
+          <li>Responsive 390 px to desktop layouts, keyboard focus, reduced motion, loading, empty and error states.</li>
+          <li>Nine passing API contract tests and a clean production build.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Prize categories</h2>
+        <ul>
+          <li>Overall winner</li>
+          <li>Best Use of Google AI</li>
+          <li>Best Use of ElevenLabs</li>
+          <li>Best Use of Snowflake</li>
+          <li>Best Use of Solana</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Run locally</h2>
+        <pre><code>npm install
+npm test
+npm run dev</code></pre>
+        <p>Without sponsor credentials, BarkPass stays fully navigable through labeled local fallbacks. Provider credentials remain server-side and are never committed to the repository.</p>
+      </section>
+
+      <section>
+        <h2>Known limitations</h2>
+        <ul>
+          <li>Visual observations depend on photo quality and are not veterinary advice.</li>
+          <li>Profile photos and fallback history stay in the current browser because accounts were out of scope for the weekend.</li>
+          <li>Solana actions use devnet and carry no real monetary value.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p><strong>Builder:</strong> Himanshu Kumar</p>
+      <p>Built as new work during the August 14 to 17, 2026 challenge window.</p>
+    </footer>
+  </body>
+</html>

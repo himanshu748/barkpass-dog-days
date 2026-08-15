@@ -40,6 +40,10 @@ export default function LandingPage() {
   useEffect(() => {
     document.title = 'BarkPass, a daily wellness passport for dogs'
     const items = document.querySelectorAll('.landing-reveal')
+    if (!('IntersectionObserver' in window)) {
+      items.forEach((item) => item.classList.add('visible'))
+      return
+    }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -87,7 +91,7 @@ export default function LandingPage() {
             <p className="hero-lede">BarkPass turns a daily photo into a gentle mood read, a voiced update, a lasting wellness history and a portable pet passport.</p>
             <div className="hero-actions">
               <a className="landing-button" href="/app">Create your dog’s BarkPass <Icon name="arrow" size={18} /></a>
-              <a className="text-link" href="#how-it-works">See how it works</a>
+              <a className="text-link" href="/app?demo=1">Open the 60-second demo</a>
             </div>
             <p className="wellness-note"><Icon name="shield" size={17} /> Wellness companion, not veterinary advice.</p>
           </div>
@@ -209,7 +213,10 @@ export default function LandingPage() {
               <li><Icon name="check" size={18} /> Viewable devnet mint address</li>
               <li><Icon name="check" size={18} /> Direct shelter donation rail</li>
             </ul>
-            <a className="landing-button light" href="/app#passport">Create your dog’s passport <Icon name="arrow" size={18} /></a>
+            <div className="passport-story-actions">
+              <a className="landing-button light" href="/app#passport">Create your dog’s passport <Icon name="arrow" size={18} /></a>
+              <a className="verified-proof-link" href="https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet" target="_blank" rel="noreferrer">View a verified live mint <Icon name="arrow" size={16} /></a>
+            </div>
           </div>
         </section>
 
