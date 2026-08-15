@@ -20,7 +20,15 @@ The live voice call returned an 84,889-byte MP3 in 1.55 seconds. Combined with t
 
 ## Solana
 
-The live server prepared an unsigned 0.01 SOL devnet shelter-tip transaction. No wallet signature or broadcast was performed during this verification. The live Ember Preview was also updated so NFT metadata resolves through the public BarkPass origin. A permanent devnet mint remains pending explicit approval of that on-chain side effect.
+The live server prepared an unsigned 0.01 SOL devnet shelter-tip transaction. The approved Luna BarkPass mint was then broadcast and finalized successfully on Solana devnet.
+
+- Mint: `AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3`
+- [Mint on Solana Explorer](https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet)
+- [Finalized mint transaction](https://explorer.solana.com/tx/3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m?cluster=devnet)
+- RPC verification: finalized with no error; mint initialized with supply `1` and `0` decimals
+- Public metadata: verified from `https://barkpass-dog-days.vercel.app/api/passport-metadata`
+
+The shelter tip is still unsigned because its final broadcast requires the owner's Phantom approval.
 
 ## Snowflake
 

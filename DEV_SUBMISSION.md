@@ -80,7 +80,7 @@ TODO before publishing: reactivate or replace the expired trial, save three dog-
 
 The passport endpoint creates dog-specific Metaplex metadata containing breed, age, microchip ID, and vaccination date. Minting uses a server-side devnet authority, while shelter tips are prepared server-side and must be approved by the owner's Phantom wallet. Explorer links are returned for verifiable proof.
 
-TODO before publishing: include one mint address and one Phantom-signed shelter-tip transaction from Solana Explorer.
+Luna's BarkPass was minted successfully on devnet as [`AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3`](https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet). The [mint transaction](https://explorer.solana.com/tx/3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m?cluster=devnet) finalized without error, and RPC verification shows an initialized NFT mint with supply one. The Phantom-signed shelter-tip transaction remains to be added.
 
 ### Reliability and privacy
 
@@ -102,7 +102,7 @@ The app includes seven API contract tests covering structured Gemini output, Ele
 - Captured: `submission-assets/03-mobile-dashboard.png`
 - Captured: five-photo Gemini evaluation and ElevenLabs latency in `submission-assets/VERIFICATION.md`
 - TODO: Snowflake three-check-in history answer
-- TODO: Solana Explorer mint and shelter-tip links
+- Captured: finalized Solana devnet mint and transaction links; Phantom-signed shelter tip remains
 - Public demo: https://barkpass-dog-days.vercel.app/app
 - Public repository: https://github.com/himanshu748/barkpass-dog-days
 - TODO: demo video URL
