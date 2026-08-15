@@ -44,7 +44,7 @@ Suggested flow for judges:
 
 ## Code
 
-**Repository:** TODO: add the public GitHub URL after authentication and secret scanning.
+**Repository:** https://github.com/himanshu748/barkpass-dog-days
 
 The app is a Vite and React frontend with Vercel Functions for provider calls. API secrets remain server-side. Dog profile photos stay in the owner's browser, while only a prepared check-in image is sent to Gemini after the owner selects it.
 
@@ -104,7 +104,7 @@ The app includes seven API contract tests covering structured Gemini output, Ele
 - TODO: Snowflake three-check-in history answer
 - TODO: Solana Explorer mint and shelter-tip links
 - Public demo: https://barkpass-dog-days.vercel.app/app
-- TODO: public GitHub URL
+- Public repository: https://github.com/himanshu748/barkpass-dog-days
 - TODO: demo video URL
 
 ## Known Limitations
