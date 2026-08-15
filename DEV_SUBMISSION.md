@@ -1,6 +1,6 @@
 ---
 title: "Your dog's camera roll is a wellness history. BarkPass makes it speak."
-published: true
+published: false
 tags: devchallenge, weekendchallenge, ai, webdev
 ---
 
@@ -41,7 +41,7 @@ The clean app route begins with onboarding. Add a real dog profile, choose a pho
 
 The Bruno route is only an optional sample story. A history product needs several days before its most interesting screen makes sense, so the sample provides seven check-ins immediately. It is not a separate build or a hidden judging route.
 
-![BarkPass daily check-in with visible mood, energy, posture and voice results](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/02-app-checkin.png)
+![BarkPass personalized daily check-in for Milo with three live provider routes, visible mood, energy, posture and voice results](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/02-app-checkin.png)
 
 ## The product flow
 
@@ -222,7 +222,7 @@ npm test
 npm run build
 ```
 
-All nine contract tests pass. The production Vite build passes. I also verified the first-run flow, the optional seven-day sample, responsive behavior at 390 pixels, public metadata, the finalized devnet mint, a playable ElevenLabs MP3, the five-photo Gemini set and Snowflake's independent aggregate.
+All thirteen contract tests pass. The production Vite build passes. I also verified the first-run flow, sample-to-personal profile isolation, the optional seven-day sample, responsive behavior at 390 pixels, public metadata, the finalized devnet mint, a playable ElevenLabs MP3, the five-photo Gemini set and Snowflake's independent aggregate.
 
 ## Run it yourself
 

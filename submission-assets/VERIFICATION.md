@@ -2,6 +2,15 @@
 
 Verified against the Vercel Preview on August 15, 2026.
 
+## Production re-verification
+
+After promoting the sponsor routes to the public deployment, BarkPass returned:
+
+- Gemini: HTTP 200 for a licensed real dog photo; `Playful`, energy `10/10`, structured posture notes and `provider: gemini`
+- ElevenLabs: HTTP 200, a 52,288-byte MPEG voice note and `x-barkpass-provider: ElevenLabs`
+- Snowflake: a live Maple profile write, three dog-scoped check-in writes and a grounded query with average energy `6.7` and range `5` to `8`
+- Public status: Gemini, ElevenLabs and Snowflake live; Solana visibly labelled demo while the replacement devnet vault awaits faucet verification
+
 ## Five-photo Gemini acceptance set
 
 | Case | Gemini mood | Energy | Confidence | API latency |
@@ -53,7 +62,7 @@ The new 120-day student trial is active. Setup and proof used:
 
 ## Build checks
 
-- API contract tests: 9/9 passed
+- API contract tests: 13/13 passed
 - Vite production build: passed
 - Public `/app` response: HTTP 200 at https://barkpass-dog-days.vercel.app/app
 - One-click `/app?demo=1` path: seven visible check-ins, average 7.0, range 4 to 9, and verified Solana example link

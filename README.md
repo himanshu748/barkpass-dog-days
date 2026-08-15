@@ -32,7 +32,7 @@ Protected Vercel deployments keep sponsor credentials server-side. Their sensiti
 
 Live Preview verification on August 15, 2026 confirmed Gemini structured image analysis, an ElevenLabs MP3 response, unsigned Solana devnet tip preparation, and a real Snowflake write/query path. All four sponsor integrations now live on the protected `barkpass-dog-days` Preview; the obsolete Ember project was removed after migration. A Luna profile and three dog-scoped check-ins were persisted in `BARKPASS.PUBLIC`; the returned answer reported an average energy of 7.0 and a range of 6 to 8. The browser still keeps profiles and history usable through the explicitly labeled local fallback when a sponsor service is unavailable.
 
-The public deployment intentionally contains no sponsor credentials. It exercises the complete interface through labeled fallbacks without exposing billable provider routes. `BARKPASS_PUBLIC_ORIGIN` lets a protected live-provider deployment mint metadata that remains readable through the public project.
+The public Production deployment now runs Gemini, ElevenLabs and Snowflake through same-origin server functions while keeping their credentials unreadable to the browser. A real-photo Gemini request, a playable ElevenLabs MP3, a Snowflake dog-profile write and a three-row grounded query were re-verified after the Production migration. Solana stays explicitly labelled as demo until the replacement devnet vault is funded; the previously finalized mint remains linked as independently verifiable proof.
 
 The app exposes these endpoints:
 
