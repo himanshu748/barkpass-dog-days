@@ -24,7 +24,7 @@ The app remains usable without credentials through local demo fallbacks. On Verc
 - Snowflake stores check-ins and grounds history answers in queried rows.
 - Metaplex mints the passport on Solana devnet, while Phantom signs the shelter tip.
 
-The three photographs of Bruno were created with Higgsfield and optimized for the web at `public/bruno-higgsfield.jpg`, `public/bruno-passport-higgsfield.jpg` and `public/bruno-walk-higgsfield.jpg`. Data graphics and interface controls remain code-native SVG and CSS.
+The three Bruno placements use distinct real photographs published under the Unsplash License and optimized locally at `public/bruno-real-hero.jpg`, `public/bruno-real-passport.jpg` and `public/bruno-real-walk.jpg`. Sources and license details are recorded in `submission-assets/gemini-eval/CREDITS.md`. Data graphics and interface controls remain code-native SVG and CSS.
 
 Production builds call the same-origin Vercel Functions automatically. During local Vite development, set `VITE_API_BASE_URL` to a running functions host if you want the live provider path. Otherwise the demo fallbacks remain active.
 

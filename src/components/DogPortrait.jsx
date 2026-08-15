@@ -1,13 +1,13 @@
 const photoByVariant = {
-  passport: '/bruno-passport-higgsfield.jpg',
-  hero: '/bruno-higgsfield.jpg',
-  walk: '/bruno-walk-higgsfield.jpg',
+  passport: '/bruno-real-passport.jpg',
+  hero: '/bruno-real-hero.jpg',
+  walk: '/bruno-real-walk.jpg',
 }
 
 const altByVariant = {
-  passport: 'Bruno, a golden retriever, photographed for his BarkPass profile',
-  hero: 'Bruno, a golden retriever, wearing his red BarkPass collar',
-  walk: 'Bruno walking toward the camera on a quiet path',
+  passport: 'Bruno, a golden retriever, photographed against a blue background',
+  hero: 'Bruno, a golden retriever, holding a yellow flower outdoors',
+  walk: 'Bruno as a golden retriever puppy wearing a red collar',
 }
 
 export default function DogPortrait({ variant = 'passport', className = '', dog = null }) {

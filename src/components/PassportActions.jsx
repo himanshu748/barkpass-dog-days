@@ -73,7 +73,7 @@ export default function PassportActions({ dog, wallet }) {
       <div className="chain-actions">
         <ActionPanel
           title={`Mint ${dog.name}’s passport`}
-          copy="Create a permanent demo passport record on Solana devnet."
+          copy="Create a permanent passport record on Solana devnet."
           action="mint"
           icon="shield"
           buttonLabel="Mint passport"
@@ -82,7 +82,7 @@ export default function PassportActions({ dog, wallet }) {
         />
         <ActionPanel
           title="Tip a shelter"
-          copy="Send a small devnet contribution to the demo shelter wallet."
+          copy="Send a small devnet contribution to the BarkPass shelter wallet."
           action="tip"
           icon="heart"
           buttonLabel="Tip a shelter"

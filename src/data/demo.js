@@ -15,7 +15,7 @@ export const sampleDog = {
   age: '4 years',
   microchip: 'demo-4821',
   vaccination: 'May 1, 2026',
-  photo: '/bruno-passport-higgsfield.jpg',
+  photo: '/bruno-real-passport.jpg',
 }
 
 export const sampleCheckins = [

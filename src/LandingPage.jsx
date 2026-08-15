@@ -102,8 +102,8 @@ export default function LandingPage() {
               <div className="hero-media">
                 {!heroLoaded && <DogPortrait />}
                 <img
-                  src="/bruno-higgsfield.jpg"
-                  alt="Bruno, a golden retriever, wearing his red BarkPass collar"
+                  src="/bruno-real-hero.jpg"
+                  alt="Bruno, a golden retriever, holding a yellow flower outdoors"
                   className={heroLoaded ? 'loaded' : ''}
                   onLoad={() => setHeroLoaded(true)}
                   onError={() => setHeroLoaded(false)}
