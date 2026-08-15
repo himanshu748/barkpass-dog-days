@@ -74,7 +74,7 @@ The measured ElevenLabs call returned an 84,889-byte MP3 in 1.55 seconds. Even w
 
 Profiles are merged into `BARKPASS_DOGS`, and check-ins are merged into `BARKPASS_CHECKINS` using both check-in ID and dog ID. History questions query only the current dog's recent rows. The answer is calculated from returned energy values and mood counts so it cannot invent a trend that is absent from the data.
 
-TODO before publishing: reactivate or replace the expired trial, save three dog-scoped rows, and include the resulting grounded answer and screenshot here.
+The replacement 120-day Snowflake student trial has been requested and its activation email sent. TODO before publishing: activate the new account, save three dog-scoped rows, and include the resulting grounded answer and screenshot here.
 
 ### Solana
 

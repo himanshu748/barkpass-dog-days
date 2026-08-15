@@ -32,7 +32,7 @@ The shelter tip is still unsigned because its final broadcast requires the owner
 
 ## Snowflake
 
-The existing account rejected connections because its free trial ended and every virtual warehouse is suspended. A replacement account and three-row grounded-query proof are still required.
+The existing account rejected connections because its free trial ended and every virtual warehouse is suspended. A new 120-day student-trial signup was accepted on August 15, 2026 using Enterprise edition on AWS in Mumbai. Snowflake sent the activation email; inbox activation, credentials, and the three-row grounded-query proof are still required.
 
 ## Build checks
 
