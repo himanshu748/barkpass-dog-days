@@ -116,7 +116,7 @@ export default function CheckinExperience({ dog, initialAnalysis, latestCheckin,
     utterance.onend = stopVoice
     utterance.onerror = stopVoice
     speaking.current = utterance
-    setVoiceProvider('Browser fallback')
+    setVoiceProvider('Device speech fallback')
     setVoiceStatus('playing')
     setPlaying(true)
     window.speechSynthesis.speak(utterance)
@@ -233,7 +233,7 @@ export default function CheckinExperience({ dog, initialAnalysis, latestCheckin,
             </button>
             <Waveform playing={playing} />
           </div>
-          <p className="player-caption">{!hasReading ? 'Ready after the first photo' : voiceStatus === 'loading' ? `Preparing ${dog.name}’s ElevenLabs voice` : playing ? `${voiceProvider} voice playing` : 'ElevenLabs voice with browser fallback'}</p>
+          <p className="player-caption">{!hasReading ? 'Ready after the first photo' : voiceStatus === 'loading' ? `Preparing ${dog.name}’s ElevenLabs voice` : playing ? `${voiceProvider} voice playing` : 'Voice note ready to play'}</p>
         </div>
       </div>
     </section>

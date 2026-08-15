@@ -14,7 +14,7 @@ Yesterday's posture, last week's energy, that unusually restless look. Each clue
 
 One daily photo becomes a structured visual observation, a short voice update spoken as the dog, a grounded history the owner can question, and an optional on-chain pet passport. BarkPass describes what is visible. It never diagnoses a condition or replaces a veterinarian.
 
-![BarkPass landing page](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/3638aef5ed9c4a1fdb0c75e94a7498018c6f6b6e/submission-assets/01-landing-page.png)
+![BarkPass landing page showing the one-photo wellness promise](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/01-landing-current.png)
 
 ## What I Built
 
@@ -41,7 +41,7 @@ The clean app route begins with onboarding. Add a real dog profile, choose a pho
 
 The Bruno route is only an optional sample story. A history product needs several days before its most interesting screen makes sense, so the sample provides seven check-ins immediately. It is not a separate build or a hidden judging route.
 
-![BarkPass personalized dashboard](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/02-personalized-dashboard.png)
+![BarkPass daily check-in with visible mood, energy, posture and voice results](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/02-app-checkin.png)
 
 ## The product flow
 
@@ -165,7 +165,7 @@ The deployment uses an X-Small auto-suspending warehouse and a dedicated service
 
 In live verification, BarkPass stored Luna and three check-ins with energy values 6, 8 and 7. The API reported an average of 7.0, a range of 6 to 8 and a higher final value. A direct Snowflake worksheet aggregate independently returned the same row count, average, minimum and maximum.
 
-![Snowflake aggregate proof](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/04-snowflake-proof.png)
+![Snowflake aggregate result for Luna's three stored check-ins](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/03-snowflake-result.jpg)
 
 Snowflake is not an analytics screenshot added after the product. It is why BarkPass can answer **"Has her energy changed?"** with the supporting numbers beside the sentence.
 
@@ -176,6 +176,8 @@ A pet passport is more useful when it is not trapped inside one application's da
 The mint endpoint validates the dog first, then generates a public metadata URL containing name, breed, age, microchip ID and vaccination date. Metaplex creates a one-of-one NFT on Solana devnet with symbol `BARK`, zero royalties and BarkPass's server vault as the mint authority.
 
 Luna's BarkPass was minted successfully as [`AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3`](https://explorer.solana.com/address/AAutLzLLaXR74Dfr1jtJdftQunCtQu7P6QzrYNoPmeK3?cluster=devnet). The [mint transaction](https://explorer.solana.com/tx/3Y7VExjN5i9nU6ZPmjWW8nVW53ZWF7vJUX48EEQYtgWnmh9kmNiKTjknNNfxKatwUWs8RP2P4SnZ6vpbKzCdTi4m?cluster=devnet) finalized without error. RPC verification shows an initialized mint with supply one and zero decimals.
+
+![Finalized BarkPass mint transaction on Solana devnet](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/04-solana-finalized.png)
 
 The shelter-tip endpoint does something deliberately different. It prepares a 0.01 SOL devnet transfer with the connected wallet as fee payer, but the server does not sign for the owner. Phantom receives the serialized transaction and must explicitly approve it before broadcast.
 
@@ -198,8 +200,6 @@ Provider credentials stay in server environments. The public deployment does not
 ### Making a weekend build feel complete
 
 The app supports photo and short-video input, loading, empty, success and error states, keyboard focus, reduced motion, 390-pixel mobile layouts and desktop layouts. The first-run reveal transition was browser-tested after it briefly produced a blank dashboard. The Solana function bundle also needed `rpc-websockets` pinned to `9.3.8` so Vercel's CommonJS build received a compatible `uuid` release.
-
-![BarkPass mobile dashboard](https://raw.githubusercontent.com/himanshu748/barkpass-dog-days/main/submission-assets/03-mobile-dashboard.png)
 
 ## Privacy, safety and reliability boundaries
 
